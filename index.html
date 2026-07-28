@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOMO DROP — Vintage Auténtico. Stock Limitado.</title>
+<meta name="description" content="Camisetas de fútbol y denim vintage originales. Drops limitados, autenticidad verificada. Cuando se agota, no vuelve.">
+<meta property="og:title" content="FOMO DROP — Vintage Auténtico">
+<meta property="og:description" content="Drops limitados de camisetas vintage originales. Se agota y no vuelve.">
+<meta property="og:image" content="img/fomo-promo.jpg">
+<link rel="icon" href="img/logo.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --black:#0a0908;
+  --black-2:#141210;
+  --white:#faf6f1;
+  --red:#e10600;
+  --red-dark:#a10400;
+  --gold:#c9a227;
+  --gold-soft:#e8c96b;
+  --grey:#8a8580;
+  --line:rgba(250,246,241,0.12);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  cursor:none;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:none;}
+.h-display{font-family:'Bebas Neue',Inter,sans-serif;letter-spacing:0.01em;line-height:0.88;text-transform:uppercase;}
+::selection{background:var(--red);color:var(--white);}
+
+/* grain overlay */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* custom cursor */
+.cursor{position:fixed;top:0;left:0;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s var(--ease),height .2s var(--ease),background .2s;}
+.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease),transform .12s linear,opacity .2s;}
+@media(hover:none){ .cursor,.cursor-ring{display:none;} body,button{cursor:auto;} }
+
+/* progress bar */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--red);z-index:200;width:0%;}
+
+/* preloader */
+.preloader{position:fixed;inset:0;background:var(--black);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity .6s var(--ease),visibility .6s;}
+.preloader.hide{opacity:0;visibility:hidden;}
+.preloader__mark{font-family:'Bebas Neue';font-size:15vw;color:var(--white);letter-spacing:0.02em;position:relative;overflow:hidden;}
+.preloader__mark::after{content:'';position:absolute;inset:0;background:var(--red);transform-origin:left;animation:wipe 1.1s var(--ease) forwards;}
+@keyframes wipe{0%{transform:scaleX(1);}100%{transform:scaleX(0);}}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:150;padding:18px 5vw;display:flex;align-items:center;justify-content:space-between;transition:background .3s,padding .3s,backdrop-filter .3s;}
+.nav.scrolled{background:rgba(10,9,8,0.7);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);padding:12px 5vw;border-bottom:1px solid var(--line);}
+.nav__logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:0.02em;}
+.nav__logo img{height:30px;width:auto;}
+.nav__links{display:flex;gap:2.2rem;list-style:none;}
+.nav__links>li{position:relative;}
+.nav__links a,.nav__trigger{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--grey);position:relative;padding-bottom:4px;transition:color .25s;background:none;border:none;display:inline-flex;align-items:center;gap:6px;}
+.nav__links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--red);transition:width .3s var(--ease);}
+.nav__links a:hover,.nav__trigger:hover{color:var(--white);}
+.nav__links a:hover::after{width:100%;}
+.nav__cta{border:1px solid var(--white);padding:9px 20px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;transition:background .25s,color .25s,border-color .25s;}
+.nav__cta:hover{background:var(--red);border-color:var(--red);color:var(--white);}
+.nav__burger{display:none;}
+@media(max-width:860px){.nav__links{display:none;} .nav__burger{display:block;background:none;border:none;color:var(--white);font-size:1.4rem;line-height:1;}}
+
+/* dropdown */
+.caret{font-size:0.55rem;transition:transform .25s var(--ease);display:inline-block;}
+.nav__links>li:hover .caret,.nav__links>li.open .caret{transform:rotate(180deg);}
+.dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);min-width:236px;background:rgba(15,13,11,0.98);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--line);padding:10px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;z-index:160;}
+.nav__links>li:hover .dropdown,.nav__links>li.open .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto;}
+.dropdown a{display:flex;align-items:center;gap:10px;padding:11px 12px;font-size:0.8rem;font-weight:500;text-transform:none;letter-spacing:0.01em;color:var(--grey);border-radius:2px;}
+.dropdown a::after{display:none;}
+.dropdown a:hover{background:rgba(255,255,255,0.05);color:var(--white);}
+.dropdown a svg{flex-shrink:0;opacity:0.85;}
+.dropdown__meta{font-size:0.68rem;color:var(--grey);opacity:0.6;display:block;margin-top:1px;font-weight:400;}
+
+/* mobile menu */
+.mobile-menu{position:fixed;inset:0;background:var(--black);z-index:200;transform:translateX(100%);transition:transform .45s var(--ease);display:flex;flex-direction:column;padding:20px 6vw 40px;overflow-y:auto;}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu__top{display:flex;align-items:center;justify-content:space-between;}
+.mobile-menu__top img{height:28px;}
+.mobile-close{background:none;border:none;color:var(--white);font-size:1.6rem;line-height:1;}
+.mobile-menu__links{margin-top:2.5rem;display:flex;flex-direction:column;}
+.mobile-link{padding:1.1rem 0;border-bottom:1px solid var(--line);font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;color:var(--white);background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;}
+.mobile-acc .mobile-sub{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);}
+.mobile-acc.open .mobile-sub{max-height:320px;}
+.mobile-acc.open .mobile-link .caret{transform:rotate(180deg);}
+.mobile-sub a{display:flex;align-items:center;gap:10px;padding:0.8rem 0 0.8rem 0.4rem;font-size:0.88rem;color:var(--grey);text-transform:none;font-weight:500;}
+.mobile-sub a:hover{color:var(--white);}
+.mobile-menu__cta{margin-top:2rem;}
+@media(min-width:861px){.mobile-menu,.mobile-close{display:none !important;}}
+
+/* marquee */
+.marquee{background:var(--red);color:var(--white);overflow:hidden;white-space:nowrap;padding:11px 0;position:relative;z-index:30;border-top:1px solid rgba(0,0,0,.15);border-bottom:1px solid rgba(0,0,0,.15);}
+.marquee__track{display:inline-flex;animation:scroll 26s linear infinite;}
+.marquee__track span{font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;padding:0 2.2rem;display:inline-flex;align-items:center;gap:2.2rem;}
+.marquee__track span::after{content:'✦';font-size:0.7rem;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:0 5vw;background:
+  radial-gradient(ellipse 80% 60% at 50% 20%, rgba(225,6,0,0.18), transparent 60%),
+  linear-gradient(180deg,#0a0908 0%,#0f0d0b 100%);
+  overflow:hidden;}
+.hero__eyebrow{display:flex;align-items:center;gap:10px;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);margin-top:110px;}
+.hero__eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.4);}}
+.hero__title{font-size:clamp(52px,10.5vw,168px);margin-top:1.2rem;}
+.hero__title .line2{color:var(--red);}
+.hero__sub{max-width:560px;margin-top:1.6rem;font-size:clamp(0.95rem,1.4vw,1.15rem);color:var(--grey);line-height:1.6;}
+.hero__actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;align-items:center;}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:17px 34px;font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;border:none;overflow:hidden;isolation:isolate;}
+.btn-primary{background:var(--red);color:var(--white);}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--white);transform:translateY(101%);transition:transform .35s var(--ease);z-index:-1;}
+.btn-primary:hover{color:var(--black);}
+.btn-primary:hover::before{transform:translateY(0);}
+.btn-ghost{border:1px solid var(--line);color:var(--white);background:transparent;transition:border-color .25s,background .25s;}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,0.04);}
+
+.hero__stock{margin-top:3rem;display:flex;gap:2.5rem;flex-wrap:wrap;}
+.stock__item{border-left:2px solid var(--red);padding-left:14px;}
+.stock__num{font-family:'Bebas Neue';font-size:2.1rem;line-height:1;}
+.stock__label{font-size:0.68rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
+
+.hero__jersey{position:absolute;right:-4vw;top:50%;transform:translateY(-50%) rotate(6deg);width:min(38vw,520px);opacity:0.94;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6));}
+@media(max-width:900px){.hero__jersey{display:none;}}
+.scroll-cue{position:absolute;bottom:28px;left:5vw;display:flex;align-items:center;gap:10px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--grey);}
+.scroll-cue__line{width:1px;height:34px;background:linear-gradient(var(--red),transparent);animation:cue 1.8s infinite;}
+@keyframes cue{0%{opacity:0;}50%{opacity:1;}100%{opacity:0;}}
+
+/* section shell */
+section{position:relative;padding:clamp(70px,10vw,140px) 5vw;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3.5rem;}
+.eyebrow-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:1rem;}
+.eyebrow-tag::before{content:'';width:18px;height:1px;background:var(--red);}
+.section-title{font-size:clamp(34px,5.2vw,68px);}
+.section-desc{max-width:420px;color:var(--grey);font-size:0.95rem;line-height:1.7;}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* manifesto */
+.manifesto{background:var(--black-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.manifesto__grid{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.manifesto__quote{font-size:clamp(24px,3vw,40px);font-weight:600;line-height:1.35;letter-spacing:-0.01em;}
+.manifesto__quote em{color:var(--red);font-style:normal;}
+.manifesto__body{color:var(--grey);margin-top:1.6rem;line-height:1.8;font-size:0.95rem;}
+.manifesto__signature{margin-top:2rem;display:flex;align-items:center;gap:14px;}
+.manifesto__signature img{height:34px;filter:grayscale(1) brightness(1.6);}
+.manifesto__panel{position:relative;aspect-ratio:4/5;background:linear-gradient(160deg,#1a1613,#0a0908);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.manifesto__panel .num{font-family:'Bebas Neue';font-size:11rem;color:rgba(255,255,255,.05);position:absolute;}
+.manifesto__panel .stat{position:relative;text-align:center;}
+.manifesto__panel .stat b{font-family:'Bebas Neue';font-size:4.5rem;display:block;color:var(--gold-soft);}
+.manifesto__panel .stat span{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey);}
+@media(max-width:860px){.manifesto__grid{grid-template-columns:1fr;} .manifesto__panel{order:-1;}}
+
+/* drop / products */
+.drop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+.card{background:var(--black);padding:2.4rem 2.2rem 2.2rem;position:relative;overflow:hidden;}
+.card__badge{position:absolute;top:1.4rem;left:1.4rem;background:var(--red);color:var(--white);font-size:0.62rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;padding:5px 11px;z-index:2;}
+.card__cat{display:block;margin-top:1.3rem;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold-soft);}
+.card__img-wrap{aspect-ratio:1/1;overflow:hidden;background:#161310;display:flex;align-items:center;justify-content:center;position:relative;}
+.card__img-wrap img{width:88%;transition:transform .6s var(--ease);}
+.card:hover .card__img-wrap img{transform:scale(1.08) rotate(-1deg);}
+.card__name{font-size:1.15rem;font-weight:700;margin-top:0.35rem;}
+.card__meta{color:var(--grey);font-size:0.82rem;margin-top:0.4rem;}
+.card__row{display:flex;justify-content:space-between;align-items:center;margin-top:1.4rem;}
+.card__price{font-family:'Bebas Neue';font-size:1.8rem;letter-spacing:0.02em;}
+.card__price small{font-family:'Inter';font-size:0.7rem;color:var(--grey);text-decoration:line-through;margin-right:6px;font-weight:500;}
+.card__stockbar{margin-top:1rem;}
+.card__stockbar .track{height:4px;background:rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.card__stockbar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--red);}
+.card__stockbar .lbl{font-size:0.68rem;color:var(--grey);margin-top:6px;text-transform:uppercase;letter-spacing:0.08em;}
+.card__cta{margin-top:1.2rem;width:100%;padding:13px;background:transparent;border:1px solid var(--line);color:var(--white);font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;transition:.25s;text-align:center;display:block;}
+.card:hover .card__cta{background:var(--white);color:var(--black);border-color:var(--white);}
+.card--shop{cursor:pointer;}
+.card__hint{margin-top:0.9rem;font-size:0.68rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.08em;display:flex;align-items:center;gap:6px;}
+.card__hint::before{content:'○';color:var(--red);font-size:0.6rem;}
+
+/* modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,9,8,0.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:300;display:flex;align-items:center;justify-content:center;padding:5vw;opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s;}
+.modal-overlay.open{opacity:1;visibility:visible;}
+.modal{background:var(--black-2);border:1px solid var(--line);max-width:800px;width:100%;max-height:88vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1.1fr;position:relative;transform:translateY(24px);transition:transform .4s var(--ease);}
+.modal-overlay.open .modal{transform:translateY(0);}
+@media(max-width:700px){.modal{grid-template-columns:1fr;}}
+.modal__img{background:#161310;display:flex;align-items:center;justify-content:center;padding:2.4rem;}
+.modal__img img{width:100%;max-width:300px;}
+.modal__body{padding:2.6rem 2.4rem;position:relative;}
+.modal__close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--white);font-size:1.5rem;line-height:1;z-index:2;width:38px;height:38px;display:flex;align-items:center;justify-content:center;}
+.modal__close:hover{color:var(--red);}
+.modal__name{font-size:1.7rem;font-weight:700;margin-top:0.5rem;line-height:1.15;}
+.modal__size{margin-top:1rem;font-size:0.84rem;color:var(--grey);}
+.modal__size b{color:var(--white);font-weight:600;}
+.modal__desc{margin-top:1.2rem;color:var(--grey);font-size:0.9rem;line-height:1.75;}
+.modal__price{margin-top:1.6rem;font-family:'Bebas Neue';font-size:2.4rem;letter-spacing:0.02em;}
+.modal__price small{font-family:'Inter';font-size:0.8rem;color:var(--grey);text-decoration:line-through;margin-right:8px;font-weight:500;}
+.modal__stock{margin-top:0.6rem;font-size:0.74rem;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;}
+.modal__cta{margin-top:1.8rem;width:100%;justify-content:center;}
+.card--next{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 30%,rgba(201,162,39,0.08),transparent 65%);}
+.card--next .lock{font-family:'Bebas Neue';font-size:3.5rem;color:var(--gold-soft);}
+.card--next p{color:var(--grey);font-size:0.85rem;margin-top:0.8rem;max-width:220px;}
+
+/* process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+@media(max-width:900px){.process{grid-template-columns:repeat(2,1fr);}}
+.process__step{background:var(--black);padding:2.6rem 2rem;}
+.process__step .idx{font-family:'Bebas Neue';font-size:2.6rem;color:var(--red);}
+.process__step h4{margin-top:1rem;font-size:1.05rem;font-weight:700;}
+.process__step p{margin-top:0.6rem;color:var(--grey);font-size:0.85rem;line-height:1.65;}
+
+/* stats + social proof */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;padding:3.5rem 0;}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stats b{font-family:'Bebas Neue';font-size:clamp(2.4rem,4.5vw,4rem);color:var(--white);display:block;}
+.stats span{font-size:0.68rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.12em;}
+
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+@media(max-width:860px){.reviews{grid-template-columns:1fr;}}
+.review{background:var(--black-2);padding:2.2rem;}
+.review__stars{color:var(--gold-soft);font-size:0.85rem;letter-spacing:2px;}
+.review p{margin-top:1rem;font-size:0.92rem;line-height:1.7;color:#d8d3cc;}
+.review__who{display:flex;align-items:center;gap:10px;margin-top:1.4rem;}
+.review__avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--gold));}
+.review__who b{font-size:0.82rem;display:block;}
+.review__who span{font-size:0.72rem;color:var(--grey);}
+
+/* vip / newsletter */
+.vip{background:var(--red);color:var(--white);text-align:center;overflow:hidden;position:relative;}
+.vip::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(0,0,0,0.05) 0 2px,transparent 2px 40px);}
+.vip__inner{position:relative;max-width:640px;margin:0 auto;}
+.vip .section-title{font-size:clamp(32px,5.5vw,64px);}
+.vip p{margin-top:1rem;opacity:0.9;font-size:0.98rem;}
+.vip__form{display:flex;gap:0;max-width:460px;margin:2.4rem auto 0;border:1.5px solid rgba(255,255,255,.5);}
+.vip__form input{flex:1;background:transparent;border:none;padding:16px 18px;color:var(--white);font-size:0.9rem;}
+.vip__form input::placeholder{color:rgba(255,255,255,.7);}
+.vip__form button{padding:16px 26px;background:var(--black);color:var(--white);border:none;font-weight:800;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;}
+.vip__fine{margin-top:1rem;font-size:0.72rem;opacity:0.75;}
+
+/* countdown */
+.countdown{display:flex;gap:1.6rem;justify-content:center;margin-top:2.2rem;}
+.countdown .b{text-align:center;}
+.countdown .n{font-family:'Bebas Neue';font-size:clamp(2.2rem,4vw,3.2rem);background:rgba(0,0,0,0.18);padding:0.4rem 0.9rem;min-width:70px;display:inline-block;}
+.countdown .l{display:block;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:6px;opacity:0.85;}
+
+/* faq */
+.faq{max-width:820px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--white);padding:1.6rem 0;display:flex;justify-content:space-between;align-items:center;font-size:1rem;font-weight:600;}
+.faq-q .plus{font-size:1.4rem;color:var(--red);transition:transform .3s var(--ease);font-weight:400;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+.faq-a p{padding-bottom:1.6rem;color:var(--grey);font-size:0.9rem;line-height:1.7;max-width:640px;}
+
+/* footer */
+footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5vw 30px;}
+.footer__top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;padding-bottom:3rem;border-bottom:1px solid var(--line);}
+@media(max-width:760px){.footer__top{grid-template-columns:1fr 1fr;}}
+.footer__brand img{height:30px;margin-bottom:1rem;}
+.footer__brand p{color:var(--grey);font-size:0.85rem;max-width:280px;line-height:1.6;}
+.footer h5{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold-soft);margin-bottom:1rem;}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+.footer ul a{color:var(--grey);font-size:0.86rem;transition:color .2s;}
+.footer ul a:hover{color:var(--white);}
+.footer__badges{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2rem;}
+.badge{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--grey);}
+.badge b{color:var(--white);}
+.footer__bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.8rem;font-size:0.72rem;color:var(--grey);}
+
+@media(max-width:600px){
+  .hero__eyebrow{margin-top:90px;}
+  .btn{padding:15px 24px;}
+}
+
+/* language gate */
+.lang-gate{position:fixed;inset:0;background:var(--black);z-index:10001;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s;}
+.lang-gate.open{opacity:1;visibility:visible;}
+.lang-gate__inner{text-align:center;padding:5vw;}
+.lang-gate__logo{height:46px;margin:0 auto 1.6rem;}
+.lang-gate__label{font-size:0.72rem;letter-spacing:0.1em;color:var(--grey);text-transform:uppercase;max-width:460px;margin:0 auto;line-height:1.9;}
+.lang-gate__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.4rem;max-width:420px;}
+.lang-gate__btn{background:var(--black-2);border:none;color:var(--white);padding:1.6rem 1rem;font-size:0.92rem;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;transition:background .25s,transform .25s;}
+.lang-gate__btn:hover{background:var(--red);}
+.lang-gate__btn .flag{font-size:1.7rem;}
+@media(max-width:500px){.lang-gate__grid{max-width:280px;}}
+
+/* nav language switcher */
+.lang-pill{display:flex;align-items:center;gap:5px;}
+.dropdown button.lang-opt{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;font-size:0.8rem;font-weight:500;color:var(--grey);background:none;border:none;text-align:left;border-radius:2px;}
+.dropdown button.lang-opt:hover,.dropdown button.lang-opt.active{background:rgba(255,255,255,0.05);color:var(--white);}
+.mobile-lang{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2rem;}
+.mobile-lang button{flex:1;background:var(--black-2);border:none;color:var(--grey);padding:0.9rem 0;font-size:0.78rem;font-weight:700;}
+.mobile-lang button.active{background:var(--red);color:var(--white);}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress" id="progress"></div>
+
+<div class="preloader" id="preloader">
+  <div class="preloader__mark">FD</div>
+</div>
+
+<!-- LANGUAGE GATE -->
+<div class="lang-gate" id="langGate">
+  <div class="lang-gate__inner">
+    <img src="img/logo.png" alt="FOMO DROP" class="lang-gate__logo">
+    <p class="lang-gate__label">Select your language · Elige tu idioma<br>Choisissez votre langue · Sprache wählen</p>
+    <div class="lang-gate__grid">
+      <button class="lang-gate__btn" data-lang="es"><span class="flag">🇪🇸</span>Español</button>
+      <button class="lang-gate__btn" data-lang="en"><span class="flag">🇬🇧</span>English</button>
+      <button class="lang-gate__btn" data-lang="fr"><span class="flag">🇫🇷</span>Français</button>
+      <button class="lang-gate__btn" data-lang="de"><span class="flag">🇩🇪</span>Deutsch</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav__logo"><img src="img/logo.png" alt="FOMO DROP"></a>
+  <ul class="nav__links">
+    <li>
+      <button class="nav__trigger" data-i18n="nav_producto">Producto <span class="caret">▾</span></button>
+      <div class="dropdown">
+        <a href="#drop"><span data-i18n="nav_producto_actual">Drop actual</span><span class="dropdown__meta" data-i18n="nav_producto_actual_meta">Lo que hay disponible ahora</span></a>
+        <a href="#drop"><span data-i18n="product_bayern_name">Bayern Múnich 1971/72</span><span class="dropdown__meta" data-i18n="nav_producto_bayern_meta">Quedan 4 unidades</span></a>
+        <a href="#drop"><span data-i18n="nav_producto_milan">AC Milan 1995/96</span><span class="dropdown__meta" data-i18n="nav_producto_milan_meta">Quedan 2 unidades</span></a>
+        <a href="#drop"><span data-i18n="nav_producto_jeans">Levi's 501 Deadstock</span><span class="dropdown__meta" data-i18n="nav_producto_jeans_meta">Últimas unidades S y L</span></a>
+        <a href="#proceso"><span data-i18n="nav_producto_verify">Cómo verificamos autenticidad</span><span class="dropdown__meta" data-i18n="nav_producto_verify_meta">Nuestro proceso, paso a paso</span></a>
+      </div>
+    </li>
+    <li>
+      <button class="nav__trigger" data-i18n="nav_quienes">Quiénes Somos <span class="caret">▾</span></button>
+      <div class="dropdown">
+        <a href="#manifiesto"><span data-i18n="nav_quienes_manifiesto">Nuestro manifiesto</span><span class="dropdown__meta" data-i18n="nav_quienes_manifiesto_meta">Por qué existimos</span></a>
+        <a href="#nosotros"><span data-i18n="nav_quienes_valores">Nuestros valores</span><span class="dropdown__meta" data-i18n="nav_quienes_valores_meta">En lo que creemos</span></a>
+      </div>
+    </li>
+    <li>
+      <button class="nav__trigger" data-i18n="nav_rrss">RRSS <span class="caret">▾</span></button>
+      <div class="dropdown">
+        <a href="https://instagram.com/fomodrop" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://tiktok.com/@fomodrop" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.2c.9.9 2 1.5 3.4 1.7v3c-1.4-.1-2.7-.5-3.9-1.3v6.6c0 3.3-2.7 6-6 6-1.4 0-2.7-.5-3.7-1.3a6 6 0 0 1 7.6-9.1v3.2a2.9 2.9 0 1 0 2 2.7V2h2.6c.1 1.2.5 2.3 1 3.2z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+    </li>
+    <li><a href="#opiniones" data-i18n="nav_opiniones">Opiniones</a></li>
+    <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+    <li>
+      <button class="nav__trigger lang-pill" id="langTrigger">🌐 <span id="langTriggerLabel">ES</span> <span class="caret">▾</span></button>
+      <div class="dropdown">
+        <button class="lang-opt" data-lang="es">🇪🇸 Español</button>
+        <button class="lang-opt" data-lang="en">🇬🇧 English</button>
+        <button class="lang-opt" data-lang="fr">🇫🇷 Français</button>
+        <button class="lang-opt" data-lang="de">🇩🇪 Deutsch</button>
+      </div>
+    </li>
+  </ul>
+  <a href="#vip" class="nav__cta" data-i18n="nav_cta_vip">Lista VIP</a>
+  <button class="nav__burger" id="burgerBtn" aria-label="Abrir menú">☰</button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__top">
+    <img src="img/logo.png" alt="FOMO DROP">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
+  </div>
+  <nav class="mobile-menu__links">
+    <div class="mobile-acc">
+      <button class="mobile-link"><span data-i18n="nav_producto">Producto</span> <span class="caret">▾</span></button>
+      <div class="mobile-sub">
+        <a href="#drop" data-i18n="nav_producto_actual">Drop actual</a>
+        <a href="#drop" data-i18n="product_bayern_name">Bayern Múnich 1971/72</a>
+        <a href="#drop" data-i18n="nav_producto_milan">AC Milan 1995/96</a>
+        <a href="#drop" data-i18n="nav_producto_jeans">Levi's 501 Deadstock</a>
+        <a href="#proceso" data-i18n="nav_producto_verify_short">Autenticidad</a>
+      </div>
+    </div>
+    <div class="mobile-acc">
+      <button class="mobile-link"><span data-i18n="nav_quienes">Quiénes Somos</span> <span class="caret">▾</span></button>
+      <div class="mobile-sub">
+        <a href="#manifiesto" data-i18n="nav_quienes_manifiesto">Nuestro manifiesto</a>
+        <a href="#nosotros" data-i18n="nav_quienes_valores">Nuestros valores</a>
+      </div>
+    </div>
+    <div class="mobile-acc">
+      <button class="mobile-link"><span data-i18n="nav_rrss">RRSS</span> <span class="caret">▾</span></button>
+      <div class="mobile-sub">
+        <a href="https://instagram.com/fomodrop" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@fomodrop" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+    <a class="mobile-link" href="#opiniones" data-i18n="nav_opiniones">Opiniones</a>
+    <a class="mobile-link" href="#faq" data-i18n="nav_faq">FAQ</a>
+  </nav>
+  <div class="mobile-lang" id="mobileLang">
+    <button data-lang="es">ES</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="fr">FR</button>
+    <button data-lang="de">DE</button>
+  </div>
+  <a href="#vip" class="btn btn-primary mobile-menu__cta" data-i18n="nav_cta_vip">Lista VIP →</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__eyebrow"><span class="dot"></span> <span data-i18n="hero_eyebrow">DROP #012 · EN VIVO AHORA</span></div>
+  <h1 class="h-display hero__title" data-i18n-html="hero_title">CADA DROP<br>ES <span class="line2">IRREPETIBLE.</span></h1>
+  <p class="hero__sub" data-i18n="hero_sub">Camisetas de fútbol y denim vintage originales, verificados pieza por pieza. Cuando un lote se agota, no se repone jamás. No es una promesa de marketing: es la única regla del negocio.</p>
+  <div class="hero__actions">
+    <a href="#drop" class="btn btn-primary" data-i18n="hero_cta_primary">Ver el drop actual →</a>
+    <a href="#vip" class="btn btn-ghost" data-i18n="hero_cta_ghost">Acceso anticipado VIP</a>
+  </div>
+  <div class="hero__stock">
+    <div class="stock__item"><span class="stock__num">8</span><span class="stock__label" data-i18n="hero_stock_pieces">Piezas restantes</span></div>
+    <div class="stock__item"><span class="stock__num">03h 42m</span><span class="stock__label" data-i18n="hero_stock_time">Para cerrar el drop</span></div>
+    <div class="stock__item"><span class="stock__num">100%</span><span class="stock__label" data-i18n="hero_stock_auth">Autenticidad verificada</span></div>
+  </div>
+  <img src="img/jersey-bayern.jpg" alt="Camiseta vintage Bayern Múnich" class="hero__jersey">
+  <div class="scroll-cue"><span class="scroll-cue__line"></span><span data-i18n="hero_scroll">SCROLL</span></div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span data-i18n="marquee_1">STOCK LIMITADO — NO SE REPONE</span><span data-i18n="marquee_2">ENVÍO ASEGURADO EN 48-72H</span><span data-i18n="marquee_3">PIEZAS VERIFICADAS AL 100%</span><span data-i18n="marquee_4">DEVOLUCIÓN EN 14 DÍAS</span>
+    <span data-i18n="marquee_1">STOCK LIMITADO — NO SE REPONE</span><span data-i18n="marquee_2">ENVÍO ASEGURADO EN 48-72H</span><span data-i18n="marquee_3">PIEZAS VERIFICADAS AL 100%</span><span data-i18n="marquee_4">DEVOLUCIÓN EN 14 DÍAS</span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifiesto">
+  <div class="manifesto__grid">
+    <div class="reveal">
+      <div class="eyebrow-tag" data-i18n="manifesto_eyebrow">El manifiesto</div>
+      <p class="manifesto__quote" data-i18n-html="manifesto_quote">No vendemos ropa. Vendemos <em>el minuto exacto</em> en que decidiste no dejarla pasar.</p>
+      <p class="manifesto__body" data-i18n="manifesto_body1">Cada pieza que entra al catálogo pasa por un proceso de curaduría manual: origen verificado, año confirmado, estado revisado a mano. No reponemos stock porque el vintage real no se fabrica bajo demanda — se encuentra, una vez, y después desaparece.</p>
+      <p class="manifesto__body" data-i18n="manifesto_body2">Si la ves y dudas, alguien más no dudará. Así ha sido en los 11 drops anteriores.</p>
+      <div class="manifesto__signature">
+        <img src="img/logo.png" alt="FOMO DROP">
+        <span style="font-size:0.78rem;color:var(--grey);" data-i18n="manifesto_signature">— Equipo de curaduría, FOMO DROP</span>
+      </div>
+    </div>
+    <div class="manifesto__panel reveal">
+      <span class="num">12</span>
+      <div class="stat">
+        <b>0</b>
+        <span data-i18n="manifesto_panel_label">Piezas repuestas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DROP -->
+<section id="drop">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow-tag" data-i18n="drop_eyebrow">Drop #012 · Julio 2026</div>
+      <h2 class="h-display section-title" data-i18n-html="drop_title">El drop de<br>esta semana</h2>
+    </div>
+    <p class="section-desc" data-i18n="drop_desc">8 piezas en total, entre camisetas y denim. Cuando el contador llegue a cero, esta colección se retira del sitio para siempre.</p>
+  </div>
+
+  <div class="drop-grid reveal">
+    <div class="card card--shop"
+      data-key="bayern"
+      data-cat="Fútbol Vintage"
+      data-name="Bayern Múnich 1971/72"
+      data-size="Talla M/L"
+      data-desc="Camiseta local del Bayern Múnich, temporada 1971/72. Bandas verticales rojo y blanco con el escudo del club bordado en el pecho. Pieza de algodón original de época, corte clásico entallado y costuras de la época sin alterar."
+      data-price="€149" data-oldprice="€189"
+      data-stock="4 de 8 disponibles"
+      data-img="img/jersey-bayern.jpg"
+      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20Bayern%20M%C3%BAnich%201971/72%20%28Talla%20M/L%29%20a%20149%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
+      <span class="card__badge" data-i18n="product_bayern_badge">Quedan 4</span>
+      <div class="card__img-wrap"><img src="img/jersey-bayern.jpg" alt="Bayern Múnich 1971/72"></div>
+      <span class="card__cat" data-i18n="product_bayern_cat">Fútbol Vintage</span>
+      <h3 class="card__name" data-i18n="product_bayern_name">Bayern Múnich 1971/72</h3>
+      <p class="card__meta" data-i18n="product_bayern_meta">Local · Talla M/L · Algodón original</p>
+      <div class="card__stockbar">
+        <div class="track"><div class="fill" style="width:50%"></div></div>
+        <div class="lbl" data-i18n="product_bayern_stocklbl">4 de 8 disponibles</div>
+      </div>
+      <div class="card__row">
+        <span class="card__price"><small>€189</small>€149</span>
+      </div>
+      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
+      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20Bayern%20M%C3%BAnich%201971/72%20%28Talla%20M/L%29%20a%20149%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
+    </div>
+
+    <div class="card card--shop"
+      data-key="milan"
+      data-cat="Fútbol Vintage"
+      data-name="AC Milan 1995/96 · Cuarta Eq."
+      data-size="Talla L"
+      data-desc="Cuarta equipación del AC Milan 1995/96, patrocinada por Opel. Azul con detalles en rojo y negro y estampado geométrico característico de los 90. Tejido técnico de poliéster original, sin reediciones."
+      data-price="€169" data-oldprice="€215"
+      data-stock="2 de 8 disponibles"
+      data-img="img/jersey-milan.jpg"
+      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20AC%20Milan%201995/96%20Cuarta%20Equipaci%C3%B3n%20%28Talla%20L%29%20a%20169%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
+      <span class="card__badge" data-i18n="product_milan_badge">Quedan 2</span>
+      <div class="card__img-wrap"><img src="img/jersey-milan.jpg" alt="AC Milan 1995/96 Cuarta Equipación"></div>
+      <span class="card__cat" data-i18n="product_milan_cat">Fútbol Vintage</span>
+      <h3 class="card__name" data-i18n="product_milan_name">AC Milan 1995/96 · Cuarta Eq.</h3>
+      <p class="card__meta" data-i18n="product_milan_meta">Cuarta equipación · Talla L · Poliéster original</p>
+      <div class="card__stockbar">
+        <div class="track"><div class="fill" style="width:25%"></div></div>
+        <div class="lbl" data-i18n="product_milan_stocklbl">2 de 8 disponibles</div>
+      </div>
+      <div class="card__row">
+        <span class="card__price"><small>€215</small>€169</span>
+      </div>
+      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
+      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20AC%20Milan%201995/96%20Cuarta%20Equipaci%C3%B3n%20%28Talla%20L%29%20a%20169%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
+    </div>
+
+    <div class="card card--shop"
+      data-key="jeansS"
+      data-cat="Denim Deadstock"
+      data-name="Levi's 501 Original"
+      data-size="Talla S (W32)"
+      data-desc="Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón original y el parche de cuero intacto. Corte recto clásico, tal como salió de fábrica."
+      data-price="€189" data-oldprice="€249"
+      data-stock="Última unidad"
+      data-img="img/jeans-501-s.webp"
+      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20S%20/%20W32%29%20a%20189%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
+      <span class="card__badge" data-i18n="product_last_unit">Última unidad</span>
+      <div class="card__img-wrap"><img src="img/jeans-501-s.webp" alt="Levi's 501 Original deadstock talla S"></div>
+      <span class="card__cat" data-i18n="product_jeans_cat">Denim Deadstock</span>
+      <h3 class="card__name" data-i18n="product_jeansS_name">Levi's 501 Original</h3>
+      <p class="card__meta" data-i18n="product_jeansS_meta">Talla S (W32) · Denim crudo sin lavar · Deadstock con etiqueta</p>
+      <div class="card__stockbar">
+        <div class="track"><div class="fill" style="width:12%"></div></div>
+        <div class="lbl" data-i18n="product_jeansS_stocklbl">1 de 8 disponibles</div>
+      </div>
+      <div class="card__row">
+        <span class="card__price"><small>€249</small>€189</span>
+      </div>
+      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
+      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20S%20/%20W32%29%20a%20189%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
+    </div>
+
+    <div class="card card--shop"
+      data-key="jeansL"
+      data-cat="Denim Deadstock"
+      data-name="Levi's 501 Original"
+      data-size="Talla L (W34/L32)"
+      data-desc="Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón y el patch de piel intacto. Corte recto clásico, tal como salió de fábrica."
+      data-price="€179" data-oldprice="€239"
+      data-stock="Última unidad"
+      data-img="img/jeans-501-l.webp"
+      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20L%20/%20W34%20L32%29%20a%20179%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
+      <span class="card__badge" data-i18n="product_last_unit">Última unidad</span>
+      <div class="card__img-wrap"><img src="img/jeans-501-l.webp" alt="Levi's 501 Original deadstock talla L"></div>
+      <span class="card__cat" data-i18n="product_jeans_cat">Denim Deadstock</span>
+      <h3 class="card__name" data-i18n="product_jeansL_name">Levi's 501 Original</h3>
+      <p class="card__meta" data-i18n="product_jeansL_meta">Talla L (W34/L32) · Denim crudo sin lavar · Deadstock con etiqueta</p>
+      <div class="card__stockbar">
+        <div class="track"><div class="fill" style="width:12%"></div></div>
+        <div class="lbl" data-i18n="product_jeansL_stocklbl">1 de 8 disponibles</div>
+      </div>
+      <div class="card__row">
+        <span class="card__price"><small>€239</small>€179</span>
+      </div>
+      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
+      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20L%20/%20W34%20L32%29%20a%20179%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
+    </div>
+
+    <div class="card card--next">
+      <span class="lock" data-i18n="next_label">DROP #013</span>
+      <p data-i18n="next_desc">El próximo lote se anuncia solo por email y se agota en horas. Sin lista VIP, te enteras cuando ya no queda nada.</p>
+      <a href="#vip" class="btn btn-primary" style="margin-top:1.4rem;" data-i18n="next_cta">Unirme a la lista</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" style="padding-top:0;">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow-tag" data-i18n="proceso_eyebrow">Autenticidad</div>
+      <h2 class="h-display section-title" data-i18n-html="proceso_title">Cero riesgo.<br>Cero réplicas.</h2>
+    </div>
+    <p class="section-desc" data-i18n="proceso_desc">Compramos vintage online desde hace años. Sabemos exactamente dónde falla la confianza — y lo resolvemos así.</p>
+  </div>
+  <div class="process reveal">
+    <div class="process__step">
+      <span class="idx">01</span>
+      <h4 data-i18n="proceso_1_h">Búsqueda y origen</h4>
+      <p data-i18n="proceso_1_p">Rastreamos coleccionistas y archivos verificados en toda Europa, pieza por pieza.</p>
+    </div>
+    <div class="process__step">
+      <span class="idx">02</span>
+      <h4 data-i18n="proceso_2_h">Verificación manual</h4>
+      <p data-i18n="proceso_2_p">Cada camiseta se autentica a mano: etiqueta, costura, año y estado real de la tela.</p>
+    </div>
+    <div class="process__step">
+      <span class="idx">03</span>
+      <h4 data-i18n="proceso_3_h">Fotografía y catálogo</h4>
+      <p data-i18n="proceso_3_p">Publicamos solo lo que ya está en nuestras manos. Nunca vendemos algo que no existe.</p>
+    </div>
+    <div class="process__step">
+      <span class="idx">04</span>
+      <h4 data-i18n="proceso_4_h">Envío asegurado</h4>
+      <p data-i18n="proceso_4_p">Empaque protegido y seguimiento en tiempo real. Llega en 48–72h o te avisamos antes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS / VALORES -->
+<section id="nosotros" class="manifesto">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow-tag" data-i18n="nosotros_eyebrow">Quiénes somos</div>
+      <h2 class="h-display section-title" data-i18n-html="nosotros_title">No es nostalgia.<br>Es cultura.</h2>
+    </div>
+    <p class="section-desc" data-i18n="nosotros_desc">FOMO DROP nació de una obsesión compartida: el fútbol de antes tenía texturas, escudos y errores de imprenta que ya no se fabrican. Vamos detrás de eso.</p>
+  </div>
+  <div class="process reveal">
+    <div class="process__step">
+      <span class="idx">01</span>
+      <h4 data-i18n="nosotros_1_h">Autenticidad sin excepciones</h4>
+      <p data-i18n="nosotros_1_p">No negociamos con réplicas. Si no podemos verificarla al 100%, no entra al catálogo.</p>
+    </div>
+    <div class="process__step">
+      <span class="idx">02</span>
+      <h4 data-i18n="nosotros_2_h">Escasez real, no fabricada</h4>
+      <p data-i18n="nosotros_2_p">No inflamos la urgencia con trucos. El stock es literalmente el que encontramos, y punto.</p>
+    </div>
+    <div class="process__step">
+      <span class="idx">03</span>
+      <h4 data-i18n="nosotros_3_h">Comunidad antes que venta</h4>
+      <p data-i18n="nosotros_3_p">Construimos esto con y para gente que ama esta camiseta tanto como nosotros.</p>
+    </div>
+    <div class="process__step">
+      <span class="idx">04</span>
+      <h4 data-i18n="nosotros_4_h">Respeto por la historia</h4>
+      <p data-i18n="nosotros_4_p">Cada pieza lleva un momento real del fútbol. Tratamos cada envío como una pieza de archivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="padding-top:0;padding-bottom:0;">
+  <div class="stats reveal" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div><b>11</b><span data-i18n="stats_1_label">Drops agotados</span></div>
+    <div><b>2.400+</b><span data-i18n="stats_2_label">Piezas colocadas</span></div>
+    <div><b>4.9/5</b><span data-i18n="stats_3_label">Valoración media</span></div>
+    <div><b>0</b><span data-i18n="stats_4_label">Reposiciones jamás</span></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="opiniones">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow-tag" data-i18n="reviews_eyebrow">Lo dice quien ya compró</div>
+      <h2 class="h-display section-title" data-i18n-html="reviews_title">No es solo<br>una camiseta</h2>
+    </div>
+  </div>
+  <div class="reviews reveal">
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p data-i18n="review_1_text">"Dudé 20 minutos por la talla. Cuando volví ya solo quedaba una. La compré sin pensar y llegó impecable."</p>
+      <div class="review__who"><div class="review__avatar"></div><div><b>Marc R.</b><span>Drop #009</span></div></div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p data-i18n="review_2_text">"Pensé que sería otra tienda de réplicas. La autenticación que hacen es real, se nota en la costura y la etiqueta."</p>
+      <div class="review__who"><div class="review__avatar"></div><div><b>Laia F.</b><span>Drop #007</span></div></div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p data-i18n="review_3_text">"Me uní a la lista VIP tras perder un drop. La siguiente vez compré en el minuto 1. Así funciona esto."</p>
+      <div class="review__who"><div class="review__avatar"></div><div><b>Iker M.</b><span>Drop #011</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIP -->
+<section class="vip" id="vip">
+  <div class="vip__inner">
+    <div class="eyebrow-tag" style="color:rgba(255,255,255,.85);" data-i18n="vip_eyebrow">Antes de que se agote</div>
+    <h2 class="h-display section-title" data-i18n-html="vip_title">Entra antes<br>que todos</h2>
+    <p data-i18n="vip_desc">La lista VIP recibe cada drop 2 horas antes que el resto — y suele ser la única forma de conseguir talla.</p>
+    <div class="countdown">
+      <div class="b"><span class="n" id="cd-h">03</span><span class="l" data-i18n="cd_hours">Horas</span></div>
+      <div class="b"><span class="n" id="cd-m">42</span><span class="l" data-i18n="cd_min">Min</span></div>
+      <div class="b"><span class="n" id="cd-s">17</span><span class="l" data-i18n="cd_sec">Seg</span></div>
+    </div>
+    <form class="vip__form" id="vipForm">
+      <input type="email" id="vipEmail" data-i18n-placeholder="vip_email_placeholder" placeholder="tu@email.com" required>
+      <button type="submit" id="vipSubmitBtn" data-i18n="vip_submit">Unirme ahora</button>
+    </form>
+    <p class="vip__fine" data-i18n="vip_fine">Sin spam. Solo aviso de drops. Cancela cuando quieras.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow-tag" data-i18n="faq_eyebrow">Preguntas frecuentes</div>
+      <h2 class="h-display section-title" data-i18n-html="faq_title">Todo antes<br>de decidir</h2>
+    </div>
+  </div>
+  <div class="faq reveal">
+    <div class="faq-item">
+      <button class="faq-q"><span data-i18n="faq_1_q">¿Las camisetas son 100% originales?</span><span class="plus">+</span></button>
+      <div class="faq-a"><p data-i18n="faq_1_a">Sí. Cada pieza pasa por verificación manual de etiqueta, costura y materiales antes de publicarse. No trabajamos con réplicas bajo ningún concepto.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span data-i18n="faq_2_q">¿Por qué no reponen el stock?</span><span class="plus">+</span></button>
+      <div class="faq-a"><p data-i18n="faq_2_a">Porque no fabricamos: encontramos piezas reales de archivo y colección. Cuando se agota una talla o modelo, físicamente no existe otra igual.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span data-i18n="faq_3_q">¿Cuánto tarda el envío?</span><span class="plus">+</span></button>
+      <div class="faq-a"><p data-i18n="faq_3_a">Entre 48 y 72 horas dentro de la Península, con seguimiento en tiempo real desde el momento de la compra.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span data-i18n="faq_4_q">¿Puedo devolver mi pedido?</span><span class="plus">+</span></button>
+      <div class="faq-a"><p data-i18n="faq_4_a">Sí, tienes 14 días desde la recepción para devolver la pieza si no cumple lo descrito en el catálogo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__top">
+    <div class="footer__brand">
+      <img src="img/logo.png" alt="FOMO DROP">
+      <p data-i18n="footer_desc">Camisetas de fútbol y denim vintage originales, en drops limitados. Se agota y no vuelve — esa es la única regla.</p>
+      <div class="footer__badges">
+        <span class="badge"><b>✓</b> <span data-i18n="footer_badge1">Pago seguro</span></span>
+        <span class="badge"><b>✓</b> <span data-i18n="footer_badge2">100% original</span></span>
+      </div>
+    </div>
+    <div class="footer">
+      <h5 data-i18n="footer_h_shop">Tienda</h5>
+      <ul><li><a href="#drop" data-i18n="footer_drop_actual">Drop actual</a></li><li><a href="#vip" data-i18n="footer_vip">Lista VIP</a></li><li><a href="#opiniones" data-i18n="nav_opiniones">Opiniones</a></li></ul>
+    </div>
+    <div class="footer">
+      <h5 data-i18n="footer_h_help">Ayuda</h5>
+      <ul><li><a href="#faq" data-i18n="nav_faq">FAQ</a></li><li><a href="#" data-i18n="footer_shipping">Envíos</a></li><li><a href="#" data-i18n="footer_returns">Devoluciones</a></li></ul>
+    </div>
+    <div class="footer">
+      <h5 data-i18n="footer_h_social">Síguenos</h5>
+      <ul><li><a href="https://instagram.com/fomodrop" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://tiktok.com/@fomodrop" target="_blank" rel="noopener">TikTok</a></li><li><a href="mailto:hola@fomodrop.com" data-i18n="footer_email">Email</a></li></ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span data-i18n="footer_copyright">© 2026 FOMO DROP. Todos los derechos reservados.</span>
+    <span data-i18n="footer_tagline">Diseñado para quienes no quieren llegar tarde.</span>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal__close" id="modalClose" aria-label="Cerrar">✕</button>
+    <div class="modal__img"><img id="modalImg" src="" alt=""></div>
+    <div class="modal__body">
+      <span class="card__cat" id="modalCat" style="margin-top:0;"></span>
+      <h3 class="modal__name" id="modalName"></h3>
+      <p class="modal__size"><span data-i18n="modal_size_label">Talla:</span> <b id="modalSize"></b></p>
+      <p class="modal__desc" id="modalDesc"></p>
+      <div class="modal__price" id="modalPrice"></div>
+      <div class="modal__stock" id="modalStock"></div>
+      <a class="btn btn-primary modal__cta" id="modalCta" href="#" target="_blank" rel="noopener" data-i18n="modal_cta">Reservar por WhatsApp →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ TRANSLATIONS ============
+const translations = {
+es:{
+nav_producto:`Producto`,nav_producto_actual:`Drop actual`,nav_producto_actual_meta:`Lo que hay disponible ahora`,nav_producto_bayern_meta:`Quedan 4 unidades`,nav_producto_milan:`AC Milan 1995/96`,nav_producto_milan_meta:`Quedan 2 unidades`,nav_producto_jeans:`Levi's 501 Deadstock`,nav_producto_jeans_meta:`Últimas unidades S y L`,nav_producto_verify:`Cómo verificamos autenticidad`,nav_producto_verify_meta:`Nuestro proceso, paso a paso`,nav_producto_verify_short:`Autenticidad`,
+nav_quienes:`Quiénes Somos`,nav_quienes_manifiesto:`Nuestro manifiesto`,nav_quienes_manifiesto_meta:`Por qué existimos`,nav_quienes_valores:`Nuestros valores`,nav_quienes_valores_meta:`En lo que creemos`,
+nav_rrss:`RRSS`,nav_opiniones:`Opiniones`,nav_faq:`FAQ`,nav_cta_vip:`Lista VIP`,
+hero_eyebrow:`DROP #012 · EN VIVO AHORA`,hero_title:`CADA DROP<br>ES <span class="line2">IRREPETIBLE.</span>`,hero_sub:`Camisetas de fútbol y denim vintage originales, verificados pieza por pieza. Cuando un lote se agota, no se repone jamás. No es una promesa de marketing: es la única regla del negocio.`,hero_cta_primary:`Ver el drop actual →`,hero_cta_ghost:`Acceso anticipado VIP`,hero_stock_pieces:`Piezas restantes`,hero_stock_time:`Para cerrar el drop`,hero_stock_auth:`Autenticidad verificada`,hero_scroll:`SCROLL`,
+marquee_1:`STOCK LIMITADO — NO SE REPONE`,marquee_2:`ENVÍO ASEGURADO EN 48-72H`,marquee_3:`PIEZAS VERIFICADAS AL 100%`,marquee_4:`DEVOLUCIÓN EN 14 DÍAS`,
+manifesto_eyebrow:`El manifiesto`,manifesto_quote:`No vendemos ropa. Vendemos <em>el minuto exacto</em> en que decidiste no dejarla pasar.`,manifesto_body1:`Cada pieza que entra al catálogo pasa por un proceso de curaduría manual: origen verificado, año confirmado, estado revisado a mano. No reponemos stock porque el vintage real no se fabrica bajo demanda — se encuentra, una vez, y después desaparece.`,manifesto_body2:`Si la ves y dudas, alguien más no dudará. Así ha sido en los 11 drops anteriores.`,manifesto_signature:`— Equipo de curaduría, FOMO DROP`,manifesto_panel_label:`Piezas repuestas`,
+drop_eyebrow:`Drop #012 · Julio 2026`,drop_title:`El drop de<br>esta semana`,drop_desc:`8 piezas en total, entre camisetas y denim. Cuando el contador llegue a cero, esta colección se retira del sitio para siempre.`,
+product_hint:`Toca la pieza para ver el detalle`,product_reserve:`Reservar esta pieza`,product_last_unit:`Última unidad`,
+product_bayern_cat:`Fútbol Vintage`,product_bayern_name:`Bayern Múnich 1971/72`,product_bayern_meta:`Local · Talla M/L · Algodón original`,product_bayern_badge:`Quedan 4`,product_bayern_stocklbl:`4 de 8 disponibles`,product_bayern_size:`Talla M/L`,product_bayern_desc:`Camiseta local del Bayern Múnich, temporada 1971/72. Bandas verticales rojo y blanco con el escudo del club bordado en el pecho. Pieza de algodón original de época, corte clásico entallado y costuras de la época sin alterar.`,
+product_milan_cat:`Fútbol Vintage`,product_milan_name:`AC Milan 1995/96 · Cuarta Eq.`,product_milan_meta:`Cuarta equipación · Talla L · Poliéster original`,product_milan_badge:`Quedan 2`,product_milan_stocklbl:`2 de 8 disponibles`,product_milan_size:`Talla L`,product_milan_desc:`Cuarta equipación del AC Milan 1995/96, patrocinada por Opel. Azul con detalles en rojo y negro y estampado geométrico característico de los 90. Tejido técnico de poliéster original, sin reediciones.`,
+product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Talla S (W32) · Denim crudo sin lavar · Deadstock con etiqueta`,product_jeansS_stocklbl:`1 de 8 disponibles`,product_jeansS_size:`Talla S (W32)`,product_jeansS_desc:`Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón original y el parche de cuero intacto. Corte recto clásico, tal como salió de fábrica.`,
+product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Talla L (W34/L32) · Denim crudo sin lavar · Deadstock con etiqueta`,product_jeansL_stocklbl:`1 de 8 disponibles`,product_jeansL_size:`Talla L (W34/L32)`,product_jeansL_desc:`Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón y el patch de piel intacto. Corte recto clásico, tal como salió de fábrica.`,
+next_label:`DROP #013`,next_desc:`El próximo lote se anuncia solo por email y se agota en horas. Sin lista VIP, te enteras cuando ya no queda nada.`,next_cta:`Unirme a la lista`,
+proceso_eyebrow:`Autenticidad`,proceso_title:`Cero riesgo.<br>Cero réplicas.`,proceso_desc:`Compramos vintage online desde hace años. Sabemos exactamente dónde falla la confianza — y lo resolvemos así.`,
+proceso_1_h:`Búsqueda y origen`,proceso_1_p:`Rastreamos coleccionistas y archivos verificados en toda Europa, pieza por pieza.`,proceso_2_h:`Verificación manual`,proceso_2_p:`Cada camiseta se autentica a mano: etiqueta, costura, año y estado real de la tela.`,proceso_3_h:`Fotografía y catálogo`,proceso_3_p:`Publicamos solo lo que ya está en nuestras manos. Nunca vendemos algo que no existe.`,proceso_4_h:`Envío asegurado`,proceso_4_p:`Empaque protegido y seguimiento en tiempo real. Llega en 48–72h o te avisamos antes.`,
+nosotros_eyebrow:`Quiénes somos`,nosotros_title:`No es nostalgia.<br>Es cultura.`,nosotros_desc:`FOMO DROP nació de una obsesión compartida: el fútbol de antes tenía texturas, escudos y errores de imprenta que ya no se fabrican. Vamos detrás de eso.`,
+nosotros_1_h:`Autenticidad sin excepciones`,nosotros_1_p:`No negociamos con réplicas. Si no podemos verificarla al 100%, no entra al catálogo.`,nosotros_2_h:`Escasez real, no fabricada`,nosotros_2_p:`No inflamos la urgencia con trucos. El stock es literalmente el que encontramos, y punto.`,nosotros_3_h:`Comunidad antes que venta`,nosotros_3_p:`Construimos esto con y para gente que ama esta camiseta tanto como nosotros.`,nosotros_4_h:`Respeto por la historia`,nosotros_4_p:`Cada pieza lleva un momento real del fútbol. Tratamos cada envío como una pieza de archivo.`,
+stats_1_label:`Drops agotados`,stats_2_label:`Piezas colocadas`,stats_3_label:`Valoración media`,stats_4_label:`Reposiciones jamás`,
+reviews_eyebrow:`Lo dice quien ya compró`,reviews_title:`No es solo<br>una camiseta`,review_1_text:`"Dudé 20 minutos por la talla. Cuando volví ya solo quedaba una. La compré sin pensar y llegó impecable."`,review_2_text:`"Pensé que sería otra tienda de réplicas. La autenticación que hacen es real, se nota en la costura y la etiqueta."`,review_3_text:`"Me uní a la lista VIP tras perder un drop. La siguiente vez compré en el minuto 1. Así funciona esto."`,
+vip_eyebrow:`Antes de que se agote`,vip_title:`Entra antes<br>que todos`,vip_desc:`La lista VIP recibe cada drop 2 horas antes que el resto — y suele ser la única forma de conseguir talla.`,cd_hours:`Horas`,cd_min:`Min`,cd_sec:`Seg`,vip_email_placeholder:`tu@email.com`,vip_submit:`Unirme ahora`,vip_submit_done:`¡Dentro! ✓`,vip_fine:`Sin spam. Solo aviso de drops. Cancela cuando quieras.`,
+faq_eyebrow:`Preguntas frecuentes`,faq_title:`Todo antes<br>de decidir`,faq_1_q:`¿Las camisetas son 100% originales?`,faq_1_a:`Sí. Cada pieza pasa por verificación manual de etiqueta, costura y materiales antes de publicarse. No trabajamos con réplicas bajo ningún concepto.`,faq_2_q:`¿Por qué no reponen el stock?`,faq_2_a:`Porque no fabricamos: encontramos piezas reales de archivo y colección. Cuando se agota una talla o modelo, físicamente no existe otra igual.`,faq_3_q:`¿Cuánto tarda el envío?`,faq_3_a:`Entre 48 y 72 horas dentro de la Península, con seguimiento en tiempo real desde el momento de la compra.`,faq_4_q:`¿Puedo devolver mi pedido?`,faq_4_a:`Sí, tienes 14 días desde la recepción para devolver la pieza si no cumple lo descrito en el catálogo.`,
+footer_desc:`Camisetas de fútbol y denim vintage originales, en drops limitados. Se agota y no vuelve — esa es la única regla.`,footer_badge1:`Pago seguro`,footer_badge2:`100% original`,footer_h_shop:`Tienda`,footer_drop_actual:`Drop actual`,footer_vip:`Lista VIP`,footer_h_help:`Ayuda`,footer_shipping:`Envíos`,footer_returns:`Devoluciones`,footer_h_social:`Síguenos`,footer_email:`Email`,footer_copyright:`© 2026 FOMO DROP. Todos los derechos reservados.`,footer_tagline:`Diseñado para quienes no quieren llegar tarde.`,
+modal_size_label:`Talla:`,modal_cta:`Reservar por WhatsApp →`,
+wa_template:`Hola FOMO DROP! Quiero reservar: {name} ({size}) a {price}. ¿Sigue disponible?`
+},
+en:{
+nav_producto:`Products`,nav_producto_actual:`Current drop`,nav_producto_actual_meta:`What's available right now`,nav_producto_bayern_meta:`4 units left`,nav_producto_milan:`AC Milan 1995/96`,nav_producto_milan_meta:`2 units left`,nav_producto_jeans:`Levi's 501 Deadstock`,nav_producto_jeans_meta:`Last units, S and L`,nav_producto_verify:`How we verify authenticity`,nav_producto_verify_meta:`Our process, step by step`,nav_producto_verify_short:`Authenticity`,
+nav_quienes:`About Us`,nav_quienes_manifiesto:`Our manifesto`,nav_quienes_manifiesto_meta:`Why we exist`,nav_quienes_valores:`Our values`,nav_quienes_valores_meta:`What we believe in`,
+nav_rrss:`Social`,nav_opiniones:`Reviews`,nav_faq:`FAQ`,nav_cta_vip:`VIP List`,
+hero_eyebrow:`DROP #012 · LIVE NOW`,hero_title:`EVERY DROP<br>IS <span class="line2">ONE OF A KIND.</span>`,hero_sub:`Original vintage football shirts and denim, verified piece by piece. Once a batch sells out, it never comes back. It's not a marketing line — it's the only rule of the business.`,hero_cta_primary:`See the current drop →`,hero_cta_ghost:`Early VIP access`,hero_stock_pieces:`Pieces left`,hero_stock_time:`Until the drop closes`,hero_stock_auth:`Authenticity verified`,hero_scroll:`SCROLL`,
+marquee_1:`LIMITED STOCK — NEVER RESTOCKED`,marquee_2:`INSURED SHIPPING IN 48-72H`,marquee_3:`100% VERIFIED PIECES`,marquee_4:`14-DAY RETURNS`,
+manifesto_eyebrow:`The manifesto`,manifesto_quote:`We don't sell clothes. We sell <em>the exact minute</em> you decided not to let it go.`,manifesto_body1:`Every piece that enters the catalogue goes through manual curation: verified origin, confirmed year, condition checked by hand. We never restock, because real vintage isn't made to order — it's found once, then it's gone.`,manifesto_body2:`If you're looking at it and hesitating, someone else won't. That's how it's gone for the last 11 drops.`,manifesto_signature:`— Curation team, FOMO DROP`,manifesto_panel_label:`Pieces restocked`,
+drop_eyebrow:`Drop #012 · July 2026`,drop_title:`This week's<br>drop`,drop_desc:`8 pieces in total, shirts and denim combined. Once the counter hits zero, this collection is pulled from the site for good.`,
+product_hint:`Tap the piece to see the details`,product_reserve:`Reserve this piece`,product_last_unit:`Last unit`,
+product_bayern_cat:`Vintage Football`,product_bayern_name:`Bayern Munich 1971/72`,product_bayern_meta:`Home · Size M/L · Original cotton`,product_bayern_badge:`4 left`,product_bayern_stocklbl:`4 of 8 available`,product_bayern_size:`Size M/L`,product_bayern_desc:`Bayern Munich home shirt, 1971/72 season. Vertical red and white stripes with the club crest embroidered on the chest. Original period cotton piece, classic fitted cut, original-era stitching untouched.`,
+product_milan_cat:`Vintage Football`,product_milan_name:`AC Milan 1995/96 · 4th Kit`,product_milan_meta:`Fourth kit · Size L · Original polyester`,product_milan_badge:`2 left`,product_milan_stocklbl:`2 of 8 available`,product_milan_size:`Size L`,product_milan_desc:`AC Milan's 1995/96 fourth kit, sponsored by Opel. Blue with red and black details and the geometric print typical of the 90s. Original technical polyester fabric, no reissue.`,
+product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Size S (W32) · Raw, unwashed denim · Deadstock with tag`,product_jeansS_stocklbl:`1 of 8 available`,product_jeansS_size:`Size S (W32)`,product_jeansS_desc:`Levi's 501 Original in raw, unwashed denim. Deadstock: never worn, still has the original cardboard tag and intact leather patch. Classic straight cut, exactly as it left the factory.`,
+product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Size L (W34/L32) · Raw, unwashed denim · Deadstock with tag`,product_jeansL_stocklbl:`1 of 8 available`,product_jeansL_size:`Size L (W34/L32)`,product_jeansL_desc:`Levi's 501 Original in raw, unwashed denim. Deadstock: never worn, still has the original cardboard tag and leather patch intact. Classic straight cut, exactly as it left the factory.`,
+next_label:`DROP #013`,next_desc:`The next batch is only announced by email and sells out in hours. Without the VIP list, you'll find out when there's nothing left.`,next_cta:`Join the list`,
+proceso_eyebrow:`Authenticity`,proceso_title:`Zero risk.<br>Zero replicas.`,proceso_desc:`We've been buying vintage online for years. We know exactly where trust breaks down — so here's how we fix it.`,
+proceso_1_h:`Sourcing & origin`,proceso_1_p:`We track down collectors and verified archives across Europe, piece by piece.`,proceso_2_h:`Manual verification`,proceso_2_p:`Every shirt is authenticated by hand: tag, stitching, year and the real condition of the fabric.`,proceso_3_h:`Photography & catalogue`,proceso_3_p:`We only list what's already in our hands. We never sell something that doesn't exist.`,proceso_4_h:`Insured shipping`,proceso_4_p:`Protected packaging and real-time tracking. Arrives in 48–72h, or we tell you before it doesn't.`,
+nosotros_eyebrow:`About us`,nosotros_title:`It's not nostalgia.<br>It's culture.`,nosotros_desc:`FOMO DROP was born from a shared obsession: football used to have textures, crests and printing quirks that just aren't made anymore. We go after that.`,
+nosotros_1_h:`Authenticity, no exceptions`,nosotros_1_p:`We don't deal in replicas. If we can't verify it 100%, it doesn't make the catalogue.`,nosotros_2_h:`Real scarcity, not staged`,nosotros_2_p:`We don't inflate urgency with tricks. The stock is literally what we found, full stop.`,nosotros_3_h:`Community before sales`,nosotros_3_p:`We built this with and for people who love this shirt as much as we do.`,nosotros_4_h:`Respect for the history`,nosotros_4_p:`Every piece carries a real football moment. We treat every shipment like an archive piece.`,
+stats_1_label:`Drops sold out`,stats_2_label:`Pieces placed`,stats_3_label:`Average rating`,stats_4_label:`Restocks, ever`,
+reviews_eyebrow:`From people who already bought`,reviews_title:`It's not just<br>a shirt`,review_1_text:`"I hesitated 20 minutes over the size. When I came back only one was left. Bought it without thinking and it arrived flawless."`,review_2_text:`"I thought it'd be another replica shop. The authentication is real — you can feel it in the stitching and the tag."`,review_3_text:`"I joined the VIP list after missing a drop. Next time I bought in minute one. That's how this works."`,
+vip_eyebrow:`Before it sells out`,vip_title:`Get in before<br>everyone else`,vip_desc:`The VIP list gets every drop 2 hours before everyone else — and it's usually the only way to get your size.`,cd_hours:`Hours`,cd_min:`Min`,cd_sec:`Sec`,vip_email_placeholder:`your@email.com`,vip_submit:`Join now`,vip_submit_done:`You're in! ✓`,vip_fine:`No spam. Just drop alerts. Unsubscribe whenever.`,
+faq_eyebrow:`Frequently asked questions`,faq_title:`Everything before<br>you decide`,faq_1_q:`Are the shirts 100% original?`,faq_1_a:`Yes. Every piece goes through manual verification of tag, stitching and materials before it's listed. We never work with replicas, under any circumstances.`,faq_2_q:`Why don't you restock?`,faq_2_a:`Because we don't manufacture — we find real archive and collector pieces. Once a size or model sells out, there physically isn't another one identical.`,faq_3_q:`How long does shipping take?`,faq_3_a:`48 to 72 hours within mainland Spain, with real-time tracking from the moment you buy.`,faq_4_q:`Can I return my order?`,faq_4_a:`Yes, you have 14 days from delivery to return the piece if it doesn't match the catalogue description.`,
+footer_desc:`Original vintage football shirts and denim, in limited drops. Sells out and never comes back — that's the only rule.`,footer_badge1:`Secure payment`,footer_badge2:`100% original`,footer_h_shop:`Shop`,footer_drop_actual:`Current drop`,footer_vip:`VIP List`,footer_h_help:`Help`,footer_shipping:`Shipping`,footer_returns:`Returns`,footer_h_social:`Follow us`,footer_email:`Email`,footer_copyright:`© 2026 FOMO DROP. All rights reserved.`,footer_tagline:`Built for people who hate being late.`,
+modal_size_label:`Size:`,modal_cta:`Reserve via WhatsApp →`,
+wa_template:`Hi FOMO DROP! I'd like to reserve: {name} ({size}) for {price}. Is it still available?`
+},
+fr:{
+nav_producto:`Produits`,nav_producto_actual:`Drop en cours`,nav_producto_actual_meta:`Ce qui est disponible maintenant`,nav_producto_bayern_meta:`Il reste 4 pièces`,nav_producto_milan:`AC Milan 1995/96`,nav_producto_milan_meta:`Il reste 2 pièces`,nav_producto_jeans:`Levi's 501 Deadstock`,nav_producto_jeans_meta:`Dernières pièces, S et L`,nav_producto_verify:`Comment nous vérifions l'authenticité`,nav_producto_verify_meta:`Notre processus, étape par étape`,nav_producto_verify_short:`Authenticité`,
+nav_quienes:`Qui Sommes-Nous`,nav_quienes_manifiesto:`Notre manifeste`,nav_quienes_manifiesto_meta:`Pourquoi nous existons`,nav_quienes_valores:`Nos valeurs`,nav_quienes_valores_meta:`En quoi nous croyons`,
+nav_rrss:`Réseaux`,nav_opiniones:`Avis`,nav_faq:`FAQ`,nav_cta_vip:`Liste VIP`,
+hero_eyebrow:`DROP #012 · EN DIRECT`,hero_title:`CHAQUE DROP<br>EST <span class="line2">UNIQUE.</span>`,hero_sub:`Maillots de football et denim vintage originaux, vérifiés pièce par pièce. Une fois un lot épuisé, il ne revient jamais. Ce n'est pas un argument marketing : c'est la seule règle de la maison.`,hero_cta_primary:`Voir le drop en cours →`,hero_cta_ghost:`Accès VIP anticipé`,hero_stock_pieces:`Pièces restantes`,hero_stock_time:`Avant la fin du drop`,hero_stock_auth:`Authenticité vérifiée`,hero_scroll:`DÉFILER`,
+marquee_1:`STOCK LIMITÉ — JAMAIS RÉAPPROVISIONNÉ`,marquee_2:`LIVRAISON ASSURÉE EN 48-72H`,marquee_3:`PIÈCES VÉRIFIÉES À 100%`,marquee_4:`RETOURS SOUS 14 JOURS`,
+manifesto_eyebrow:`Le manifeste`,manifesto_quote:`Nous ne vendons pas des vêtements. Nous vendons <em>la minute exacte</em> où vous avez décidé de ne pas la laisser filer.`,manifesto_body1:`Chaque pièce du catalogue passe par une curation manuelle : origine vérifiée, année confirmée, état contrôlé à la main. Nous ne réapprovisionnons jamais, car le vrai vintage ne se fabrique pas sur commande — il se trouve, une fois, puis disparaît.`,manifesto_body2:`Si vous hésitez en la voyant, quelqu'un d'autre n'hésitera pas. C'est comme ça depuis les 11 derniers drops.`,manifesto_signature:`— L'équipe curation, FOMO DROP`,manifesto_panel_label:`Pièces réapprovisionnées`,
+drop_eyebrow:`Drop #012 · Juillet 2026`,drop_title:`Le drop de<br>la semaine`,drop_desc:`8 pièces au total, maillots et denim confondus. Quand le compteur atteint zéro, cette collection quitte le site pour toujours.`,
+product_hint:`Touchez la pièce pour voir le détail`,product_reserve:`Réserver cette pièce`,product_last_unit:`Dernière pièce`,
+product_bayern_cat:`Football Vintage`,product_bayern_name:`Bayern Munich 1971/72`,product_bayern_meta:`Domicile · Taille M/L · Coton d'origine`,product_bayern_badge:`Il reste 4`,product_bayern_stocklbl:`4 sur 8 disponibles`,product_bayern_size:`Taille M/L`,product_bayern_desc:`Maillot domicile du Bayern Munich, saison 1971/72. Bandes verticales rouges et blanches avec l'écusson du club brodé sur la poitrine. Pièce en coton d'origine, coupe classique ajustée, coutures d'époque intactes.`,
+product_milan_cat:`Football Vintage`,product_milan_name:`AC Milan 1995/96 · 4ème Maillot`,product_milan_meta:`Quatrième maillot · Taille L · Polyester d'origine`,product_milan_badge:`Il reste 2`,product_milan_stocklbl:`2 sur 8 disponibles`,product_milan_size:`Taille L`,product_milan_desc:`Quatrième maillot de l'AC Milan 1995/96, sponsorisé par Opel. Bleu avec détails rouge et noir et motif géométrique typique des années 90. Tissu technique en polyester d'origine, sans réédition.`,
+product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Taille S (W32) · Denim brut non lavé · Deadstock avec étiquette`,product_jeansS_stocklbl:`1 sur 8 disponibles`,product_jeansS_size:`Taille S (W32)`,product_jeansS_desc:`Jean Levi's 501 Original en denim brut non lavé. Deadstock : jamais porté, étiquette carton d'origine et patch en cuir intacts. Coupe droite classique, tel que sorti d'usine.`,
+product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Taille L (W34/L32) · Denim brut non lavé · Deadstock avec étiquette`,product_jeansL_stocklbl:`1 sur 8 disponibles`,product_jeansL_size:`Taille L (W34/L32)`,product_jeansL_desc:`Jean Levi's 501 Original en denim brut non lavé. Deadstock : jamais porté, étiquette carton et patch en cuir intacts. Coupe droite classique, tel que sorti d'usine.`,
+next_label:`DROP #013`,next_desc:`Le prochain lot n'est annoncé que par email et part en quelques heures. Sans la liste VIP, vous l'apprendrez quand il n'y aura plus rien.`,next_cta:`Rejoindre la liste`,
+proceso_eyebrow:`Authenticité`,proceso_title:`Zéro risque.<br>Zéro contrefaçon.`,proceso_desc:`Nous achetons du vintage en ligne depuis des années. Nous savons exactement où se joue la confiance — et voici comment nous la garantissons.`,
+proceso_1_h:`Recherche et origine`,proceso_1_p:`Nous traquons collectionneurs et archives vérifiées partout en Europe, pièce par pièce.`,proceso_2_h:`Vérification manuelle`,proceso_2_p:`Chaque maillot est authentifié à la main : étiquette, coutures, année et état réel du tissu.`,proceso_3_h:`Photo et mise en catalogue`,proceso_3_p:`Nous ne publions que ce que nous avons déjà entre les mains. Nous ne vendons jamais ce qui n'existe pas.`,proceso_4_h:`Livraison assurée`,proceso_4_p:`Emballage protégé et suivi en temps réel. Livré en 48–72h, ou nous vous prévenons avant.`,
+nosotros_eyebrow:`Qui sommes-nous`,nosotros_title:`Ce n'est pas de la nostalgie.<br>C'est une culture.`,nosotros_desc:`FOMO DROP est né d'une obsession partagée : le football d'avant avait des textures, des écussons et des erreurs d'impression qu'on ne fabrique plus. Nous courons après ça.`,
+nosotros_1_h:`Authenticité sans exception`,nosotros_1_p:`Nous ne négocions pas avec les contrefaçons. Si nous ne pouvons pas la vérifier à 100 %, elle n'entre pas au catalogue.`,nosotros_2_h:`Rareté réelle, jamais mise en scène`,nosotros_2_p:`Nous ne gonflons pas l'urgence artificiellement. Le stock est littéralement ce que nous trouvons, un point c'est tout.`,nosotros_3_h:`La communauté avant la vente`,nosotros_3_p:`Nous construisons ceci avec et pour des gens qui aiment ce maillot autant que nous.`,nosotros_4_h:`Respect de l'histoire`,nosotros_4_p:`Chaque pièce porte un vrai moment de football. Nous traitons chaque envoi comme une pièce d'archive.`,
+stats_1_label:`Drops épuisés`,stats_2_label:`Pièces vendues`,stats_3_label:`Note moyenne`,stats_4_label:`Réapprovisionnements`,
+reviews_eyebrow:`Ce qu'en disent nos clients`,reviews_title:`Ce n'est pas<br>qu'un maillot`,review_1_text:`« J'ai hésité 20 minutes pour la taille. Quand je suis revenu, il n'en restait qu'un. Je l'ai acheté sans réfléchir et il est arrivé impeccable. »`,review_2_text:`« Je pensais que c'était encore une boutique de contrefaçons. L'authentification est réelle, ça se voit sur les coutures et l'étiquette. »`,review_3_text:`« J'ai rejoint la liste VIP après avoir raté un drop. La fois suivante, j'ai acheté à la minute une. C'est comme ça que ça marche. »`,
+vip_eyebrow:`Avant la rupture de stock`,vip_title:`Passez devant<br>tout le monde`,vip_desc:`La liste VIP reçoit chaque drop 2 heures avant tout le monde — souvent le seul moyen d'avoir sa taille.`,cd_hours:`Heures`,cd_min:`Min`,cd_sec:`Sec`,vip_email_placeholder:`vous@email.com`,vip_submit:`Rejoindre maintenant`,vip_submit_done:`C'est fait ! ✓`,vip_fine:`Pas de spam. Juste les alertes drops. Résiliable à tout moment.`,
+faq_eyebrow:`Questions fréquentes`,faq_title:`Tout savoir<br>avant de craquer`,faq_1_q:`Les maillots sont-ils 100% originaux ?`,faq_1_a:`Oui. Chaque pièce passe par une vérification manuelle de l'étiquette, des coutures et des matériaux avant sa mise en ligne. Nous ne travaillons avec aucune contrefaçon, en aucun cas.`,faq_2_q:`Pourquoi ne réapprovisionnez-vous pas ?`,faq_2_a:`Parce que nous ne fabriquons pas : nous trouvons de vraies pièces d'archive et de collection. Quand une taille ou un modèle est épuisé, il n'en existe physiquement pas d'autre identique.`,faq_3_q:`Combien de temps prend la livraison ?`,faq_3_a:`Entre 48 et 72 heures en France métropolitaine, avec suivi en temps réel dès l'achat.`,faq_4_q:`Puis-je retourner ma commande ?`,faq_4_a:`Oui, vous avez 14 jours après réception pour retourner la pièce si elle ne correspond pas à la description du catalogue.`,
+footer_desc:`Maillots de football et denim vintage originaux, en drops limités. Épuisé, jamais réapprovisionné — c'est la seule règle.`,footer_badge1:`Paiement sécurisé`,footer_badge2:`100% original`,footer_h_shop:`Boutique`,footer_drop_actual:`Drop en cours`,footer_vip:`Liste VIP`,footer_h_help:`Aide`,footer_shipping:`Livraison`,footer_returns:`Retours`,footer_h_social:`Suivez-nous`,footer_email:`Email`,footer_copyright:`© 2026 FOMO DROP. Tous droits réservés.`,footer_tagline:`Conçu pour ceux qui détestent arriver trop tard.`,
+modal_size_label:`Taille :`,modal_cta:`Réserver via WhatsApp →`,
+wa_template:`Bonjour FOMO DROP ! Je voudrais réserver : {name} ({size}) à {price}. Est-elle toujours disponible ?`
+},
+de:{
+nav_producto:`Produkte`,nav_producto_actual:`Aktueller Drop`,nav_producto_actual_meta:`Was gerade verfügbar ist`,nav_producto_bayern_meta:`Noch 4 Stück`,nav_producto_milan:`AC Milan 1995/96`,nav_producto_milan_meta:`Noch 2 Stück`,nav_producto_jeans:`Levi's 501 Deadstock`,nav_producto_jeans_meta:`Letzte Stücke, S und L`,nav_producto_verify:`Wie wir Echtheit prüfen`,nav_producto_verify_meta:`Unser Prozess, Schritt für Schritt`,nav_producto_verify_short:`Echtheit`,
+nav_quienes:`Über Uns`,nav_quienes_manifiesto:`Unser Manifest`,nav_quienes_manifiesto_meta:`Warum es uns gibt`,nav_quienes_valores:`Unsere Werte`,nav_quienes_valores_meta:`Woran wir glauben`,
+nav_rrss:`Social Media`,nav_opiniones:`Bewertungen`,nav_faq:`FAQ`,nav_cta_vip:`VIP-Liste`,
+hero_eyebrow:`DROP #012 · JETZT LIVE`,hero_title:`JEDER DROP<br>IST <span class="line2">EINMALIG.</span>`,hero_sub:`Original Vintage-Fußballtrikots und Denim, Stück für Stück verifiziert. Ist eine Charge ausverkauft, kommt sie nie wieder. Das ist kein Marketing-Spruch, sondern die einzige Regel im Haus.`,hero_cta_primary:`Aktuellen Drop ansehen →`,hero_cta_ghost:`Früher VIP-Zugang`,hero_stock_pieces:`Stücke übrig`,hero_stock_time:`Bis der Drop schließt`,hero_stock_auth:`Echtheit geprüft`,hero_scroll:`SCROLLEN`,
+marquee_1:`BEGRENZTER BESTAND — WIRD NIE NACHGEFÜLLT`,marquee_2:`VERSICHERTER VERSAND IN 48-72H`,marquee_3:`STÜCKE ZU 100% GEPRÜFT`,marquee_4:`RÜCKGABE INNERHALB 14 TAGEN`,
+manifesto_eyebrow:`Das Manifest`,manifesto_quote:`Wir verkaufen keine Kleidung. Wir verkaufen <em>den genauen Moment</em>, in dem du dich entschieden hast, sie nicht ziehen zu lassen.`,manifesto_body1:`Jedes Stück im Katalog durchläuft eine manuelle Kuratierung: Herkunft geprüft, Jahr bestätigt, Zustand von Hand kontrolliert. Wir füllen nie nach, denn echtes Vintage wird nicht auf Bestellung gefertigt — man findet es einmal, dann ist es weg.`,manifesto_body2:`Wenn du zögerst, tut es jemand anderes nicht. So war es bei den letzten 11 Drops.`,manifesto_signature:`— Kuratierungsteam, FOMO DROP`,manifesto_panel_label:`Nachgefüllte Stücke`,
+drop_eyebrow:`Drop #012 · Juli 2026`,drop_title:`Der Drop<br>dieser Woche`,drop_desc:`8 Stück insgesamt, Trikots und Denim zusammen. Wenn der Zähler null erreicht, verschwindet diese Kollektion für immer von der Seite.`,
+product_hint:`Auf das Stück tippen, um Details zu sehen`,product_reserve:`Dieses Stück reservieren`,product_last_unit:`Letztes Stück`,
+product_bayern_cat:`Vintage Fußball`,product_bayern_name:`Bayern München 1971/72`,product_bayern_meta:`Heimtrikot · Größe M/L · Original-Baumwolle`,product_bayern_badge:`Noch 4`,product_bayern_stocklbl:`4 von 8 verfügbar`,product_bayern_size:`Größe M/L`,product_bayern_desc:`Heimtrikot des FC Bayern München, Saison 1971/72. Vertikale rot-weiße Streifen mit gesticktem Vereinswappen auf der Brust. Original-Baumwollstück aus der Zeit, klassischer, tailliert geschnitten, unveränderte Nähte der Epoche.`,
+product_milan_cat:`Vintage Fußball`,product_milan_name:`AC Mailand 1995/96 · 4. Trikot`,product_milan_meta:`Viertes Trikot · Größe L · Original-Polyester`,product_milan_badge:`Noch 2`,product_milan_stocklbl:`2 von 8 verfügbar`,product_milan_size:`Größe L`,product_milan_desc:`Viertes Trikot des AC Mailand 1995/96, gesponsert von Opel. Blau mit roten und schwarzen Details und dem für die 90er typischen geometrischen Muster. Original-Funktionspolyester, keine Neuauflage.`,
+product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Größe S (W32) · Roher, ungewaschener Denim · Deadstock mit Etikett`,product_jeansS_stocklbl:`1 von 8 verfügbar`,product_jeansS_size:`Größe S (W32)`,product_jeansS_desc:`Levi's 501 Original aus rohem, ungewaschenem Denim. Deadstock: nie getragen, mit originalem Pappetikett und intaktem Lederpatch. Klassischer gerader Schnitt, genau wie ab Werk.`,
+product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Größe L (W34/L32) · Roher, ungewaschener Denim · Deadstock mit Etikett`,product_jeansL_stocklbl:`1 von 8 verfügbar`,product_jeansL_size:`Größe L (W34/L32)`,product_jeansL_desc:`Levi's 501 Original aus rohem, ungewaschenem Denim. Deadstock: nie getragen, mit originalem Pappetikett und Lederpatch intakt. Klassischer gerader Schnitt, genau wie ab Werk.`,
+next_label:`DROP #013`,next_desc:`Die nächste Charge wird nur per E-Mail angekündigt und ist in Stunden ausverkauft. Ohne VIP-Liste erfährst du es erst, wenn nichts mehr da ist.`,next_cta:`Der Liste beitreten`,
+proceso_eyebrow:`Echtheit`,proceso_title:`Null Risiko.<br>Null Fälschungen.`,proceso_desc:`Wir kaufen seit Jahren Vintage online. Wir wissen genau, wo Vertrauen scheitert — und so lösen wir es.`,
+proceso_1_h:`Suche & Herkunft`,proceso_1_p:`Wir spüren Sammler und verifizierte Archive in ganz Europa auf, Stück für Stück.`,proceso_2_h:`Manuelle Prüfung`,proceso_2_p:`Jedes Trikot wird von Hand authentifiziert: Etikett, Naht, Jahr und der reale Zustand des Stoffs.`,proceso_3_h:`Fotografie & Katalog`,proceso_3_p:`Wir listen nur, was wir bereits in Händen halten. Wir verkaufen nie etwas, das es nicht gibt.`,proceso_4_h:`Versicherter Versand`,proceso_4_p:`Geschützte Verpackung und Echtzeit-Tracking. Ankunft in 48–72h — oder wir sagen es dir vorher.`,
+nosotros_eyebrow:`Über uns`,nosotros_title:`Das ist keine Nostalgie.<br>Das ist Kultur.`,nosotros_desc:`FOMO DROP entstand aus einer gemeinsamen Obsession: Fußball hatte früher Texturen, Wappen und Druckfehler, die heute niemand mehr herstellt. Genau dem gehen wir nach.`,
+nosotros_1_h:`Echtheit ohne Ausnahme`,nosotros_1_p:`Wir handeln nicht mit Fälschungen. Können wir es nicht zu 100 % verifizieren, kommt es nicht in den Katalog.`,nosotros_2_h:`Echte Knappheit, nicht inszeniert`,nosotros_2_p:`Wir erzeugen keine künstliche Dringlichkeit. Der Bestand ist buchstäblich das, was wir gefunden haben, Punkt.`,nosotros_3_h:`Community vor Verkauf`,nosotros_3_p:`Wir bauen das mit und für Menschen, die dieses Trikot genauso lieben wie wir.`,nosotros_4_h:`Respekt vor der Geschichte`,nosotros_4_p:`Jedes Stück trägt einen echten Fußballmoment. Wir behandeln jede Sendung wie ein Archivstück.`,
+stats_1_label:`Ausverkaufte Drops`,stats_2_label:`Verkaufte Stücke`,stats_3_label:`Durchschnittsbewertung`,stats_4_label:`Nachbestellungen, je`,
+reviews_eyebrow:`Das sagen unsere Käufer`,reviews_title:`Mehr als<br>nur ein Trikot`,review_1_text:`„Ich habe 20 Minuten wegen der Größe gezögert. Als ich zurückkam, war nur noch eins übrig. Ohne nachzudenken gekauft, und es kam einwandfrei an."`,review_2_text:`„Ich dachte, das sei noch ein Fake-Shop. Die Echtheitsprüfung ist real, man merkt es an Naht und Etikett."`,review_3_text:`„Ich bin nach einem verpassten Drop der VIP-Liste beigetreten. Beim nächsten Mal habe ich in der ersten Minute gekauft. So funktioniert das."`,
+vip_eyebrow:`Bevor es ausverkauft ist`,vip_title:`Vor allen<br>anderen dabei sein`,vip_desc:`Die VIP-Liste bekommt jeden Drop 2 Stunden vor allen anderen — meist die einzige Chance, die richtige Größe zu bekommen.`,cd_hours:`Std`,cd_min:`Min`,cd_sec:`Sek`,vip_email_placeholder:`deine@email.com`,vip_submit:`Jetzt beitreten`,vip_submit_done:`Dabei! ✓`,vip_fine:`Kein Spam. Nur Drop-Benachrichtigungen. Jederzeit kündbar.`,
+faq_eyebrow:`Häufige Fragen`,faq_title:`Alles Wichtige<br>vor dem Kauf`,faq_1_q:`Sind die Trikots zu 100% original?`,faq_1_a:`Ja. Jedes Stück wird vor der Veröffentlichung manuell auf Etikett, Naht und Material geprüft. Wir arbeiten unter keinen Umständen mit Fälschungen.`,faq_2_q:`Warum füllt ihr den Bestand nicht auf?`,faq_2_a:`Weil wir nicht produzieren: Wir finden echte Archiv- und Sammlerstücke. Ist eine Größe oder ein Modell ausverkauft, gibt es physisch kein identisches Duplikat.`,faq_3_q:`Wie lange dauert der Versand?`,faq_3_a:`48 bis 72 Stunden innerhalb Deutschlands, mit Echtzeit-Tracking ab dem Kaufmoment.`,faq_4_q:`Kann ich meine Bestellung zurückgeben?`,faq_4_a:`Ja, du hast 14 Tage ab Erhalt, um das Stück zurückzugeben, falls es nicht der Katalogbeschreibung entspricht.`,
+footer_desc:`Original Vintage-Fußballtrikots und Denim, in limitierten Drops. Ausverkauft heißt für immer weg — das ist die einzige Regel.`,footer_badge1:`Sichere Zahlung`,footer_badge2:`100% original`,footer_h_shop:`Shop`,footer_drop_actual:`Aktueller Drop`,footer_vip:`VIP-Liste`,footer_h_help:`Hilfe`,footer_shipping:`Versand`,footer_returns:`Rückgabe`,footer_h_social:`Folge uns`,footer_email:`E-Mail`,footer_copyright:`© 2026 FOMO DROP. Alle Rechte vorbehalten.`,footer_tagline:`Gemacht für alle, die es hassen, zu spät zu kommen.`,
+modal_size_label:`Größe:`,modal_cta:`Über WhatsApp reservieren →`,
+wa_template:`Hallo FOMO DROP! Ich möchte reservieren: {name} ({size}) für {price}. Ist es noch verfügbar?`
+}
+};
+
+const PRODUCT_KEYS=['bayern','milan','jeansS','jeansL'];
+let currentLang='es';
+
+function applyLanguage(lang){
+  if(!translations[lang]) lang='es';
+  currentLang=lang;
+  const t=translations[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined) el.textContent=t[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-html');
+    if(t[key]!==undefined) el.innerHTML=t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-placeholder');
+    if(t[key]!==undefined) el.placeholder=t[key];
+  });
+  // sync product dataset (used by the modal) from the now-translated card text + build WhatsApp links
+  document.querySelectorAll('.card--shop').forEach(card=>{
+    const key=card.dataset.key;
+    if(!key) return;
+    const nameEl=card.querySelector('.card__name'), catEl=card.querySelector('.card__cat'), stockEl=card.querySelector('.card__stockbar .lbl');
+    const name=nameEl?nameEl.textContent:card.dataset.name;
+    const size=t['product_'+key+'_size']||card.dataset.size;
+    const desc=t['product_'+key+'_desc']||card.dataset.desc;
+    const cat=catEl?catEl.textContent:card.dataset.cat;
+    const stock=stockEl?stockEl.textContent:card.dataset.stock;
+    card.dataset.name=name; card.dataset.size=size; card.dataset.desc=desc; card.dataset.cat=cat; card.dataset.stock=stock;
+    const waText=t.wa_template.replace('{name}',name).replace('{size}',size).replace('{price}',card.dataset.price);
+    const waLink='https://wa.me/34612234308?text='+encodeURIComponent(waText);
+    card.dataset.wa=waLink;
+    const ctaLink=card.querySelector('.card__cta');
+    if(ctaLink) ctaLink.href=waLink;
+  });
+  // nav language trigger label + active state
+  const labelEl=document.getElementById('langTriggerLabel');
+  if(labelEl) labelEl.textContent=lang.toUpperCase();
+  document.querySelectorAll('.lang-opt').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  document.querySelectorAll('.mobile-lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  localStorage.setItem('fd_lang',lang);
+}
+
+// preloader
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('preloader').classList.add('hide'),900);
+});
+
+// custom cursor
+const cursor=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+function loop(){rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);}
+loop();
+document.querySelectorAll('a,button,input,.card--shop').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='54px';ring.style.height='54px';cursor.style.background='#fff';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='34px';ring.style.height='34px';cursor.style.background='var(--red)';});
+});
+
+// nav scroll state + progress bar
+const nav=document.getElementById('nav'), progress=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>40);
+  const h=document.documentElement;
+  const pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  progress.style.width=pct+'%';
+});
+
+// scroll reveal
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting){en.target.classList.add('in'); io.unobserve(en.target);} });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// faq accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q=item.querySelector('.faq-q'), a=item.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+    if(!isOpen){item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+
+// product modal
+const modalOverlay=document.getElementById('modalOverlay');
+const modalEls={
+  img:document.getElementById('modalImg'), cat:document.getElementById('modalCat'),
+  name:document.getElementById('modalName'), size:document.getElementById('modalSize'),
+  desc:document.getElementById('modalDesc'), price:document.getElementById('modalPrice'),
+  stock:document.getElementById('modalStock'), cta:document.getElementById('modalCta')
+};
+function openModal(card){
+  const d=card.dataset;
+  modalEls.img.src=d.img; modalEls.img.alt=d.name;
+  modalEls.cat.textContent=d.cat;
+  modalEls.name.textContent=d.name;
+  modalEls.size.textContent=d.size;
+  modalEls.desc.textContent=d.desc;
+  modalEls.price.innerHTML=(d.oldprice?'<small>'+d.oldprice+'</small>':'')+d.price;
+  modalEls.stock.textContent=d.stock;
+  modalEls.cta.href=d.wa;
+  modalOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.card--shop').forEach(card=>{
+  card.addEventListener('click',(e)=>{
+    if(e.target.closest('.card__cta')) return; // let the WhatsApp link work directly
+    openModal(card);
+  });
+});
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modalOverlay.addEventListener('click',(e)=>{ if(e.target===modalOverlay) closeModal(); });
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+
+// dropdown menu (click/tap toggle, closes others + closes on outside click)
+document.querySelectorAll('.nav__links > li').forEach(li=>{
+  const trigger=li.querySelector('.nav__trigger');
+  if(!trigger) return;
+  trigger.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    const isOpen=li.classList.contains('open');
+    document.querySelectorAll('.nav__links > li').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) li.classList.add('open');
+  });
+});
+document.addEventListener('click',()=>{
+  document.querySelectorAll('.nav__links > li').forEach(i=>i.classList.remove('open'));
+});
+
+// mobile menu open/close
+const burgerBtn=document.getElementById('burgerBtn'), mobileMenu=document.getElementById('mobileMenu'), mobileClose=document.getElementById('mobileClose');
+burgerBtn.addEventListener('click',()=>{mobileMenu.classList.add('open'); document.body.style.overflow='hidden';});
+mobileClose.addEventListener('click',()=>{mobileMenu.classList.remove('open'); document.body.style.overflow='';});
+mobileMenu.querySelectorAll('.mobile-sub a, a.mobile-link, .mobile-menu__cta').forEach(a=>{
+  a.addEventListener('click',()=>{mobileMenu.classList.remove('open'); document.body.style.overflow='';});
+});
+
+// mobile accordion
+document.querySelectorAll('.mobile-acc').forEach(acc=>{
+  acc.querySelector('.mobile-link').addEventListener('click',()=>{
+    const isOpen=acc.classList.contains('open');
+    document.querySelectorAll('.mobile-acc').forEach(a=>a.classList.remove('open'));
+    if(!isOpen) acc.classList.add('open');
+  });
+});
+
+// countdown timer (real, resets to next 6h block for demo persistence of urgency)
+function nextDeadline(){
+  const now=new Date();
+  const d=new Date(now); d.setHours(now.getHours()+3,42,17,0);
+  return d;
+}
+let deadline=nextDeadline();
+function tick(){
+  let diff=Math.max(0,deadline-new Date());
+  const h=String(Math.floor(diff/3600000)).padStart(2,'0');
+  const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  document.getElementById('cd-h').textContent=h;
+  document.getElementById('cd-m').textContent=m;
+  document.getElementById('cd-s').textContent=s;
+  if(diff<=0){deadline=nextDeadline();}
+}
+setInterval(tick,1000); tick();
+
+// VIP form submit
+const vipForm=document.getElementById('vipForm');
+if(vipForm){
+  vipForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    document.getElementById('vipSubmitBtn').textContent=translations[currentLang].vip_submit_done;
+    document.getElementById('vipEmail').value='';
+  });
+}
+
+// ============ LANGUAGE GATE + SWITCHER ============
+const langGate=document.getElementById('langGate');
+function chooseLanguage(lang){
+  applyLanguage(lang);
+  langGate.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.lang-gate__btn').forEach(btn=>{
+  btn.addEventListener('click',()=>chooseLanguage(btn.dataset.lang));
+});
+document.querySelectorAll('.lang-opt, .mobile-lang button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    applyLanguage(btn.dataset.lang);
+    document.querySelectorAll('.nav__links > li').forEach(i=>i.classList.remove('open'));
+  });
+});
+
+// init: use saved language if present, otherwise show the gate after the preloader
+const savedLang=localStorage.getItem('fd_lang');
+if(savedLang && translations[savedLang]){
+  applyLanguage(savedLang);
+} else {
+  applyLanguage('es');
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{ langGate.classList.add('open'); document.body.style.overflow='hidden'; },950);
+  });
+}
+</script>
+</body>
+</html>
