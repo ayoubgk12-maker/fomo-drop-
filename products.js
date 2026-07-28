@@ -1,6 +1,11 @@
 // ============================================================
 // PRODUCTOS EN VENTA — FOMO DROP
 // ============================================================
+// IMPORTANTE: cada producto es una PIEZA ÚNICA. No hay dos iguales,
+// no se repone. En cuanto se vende, hay que BORRAR ese bloque entero
+// de este archivo (no se pone a 0, se elimina) y volver a subir el
+// archivo a GitHub. Así desaparece del sitio para siempre.
+//
 // CÓMO AÑADIR UN PRODUCTO NUEVO:
 //
 // 1. Copia un bloque completo (desde { hasta la }, que le sigue) y pégalo
@@ -26,9 +31,10 @@
 // "talla" es un solo campo (no hace falta traducirlo): pon el valor tal
 // cual, por ejemplo "M/L", "S (W32)", "42", etc.
 //
-// "stock" = unidades que quedan ahora mismo.
-// "stockTotal" = tamaño del lote original. Si no lo sabes, pon el mismo
-// número que en "stock".
+// "stock" y "stockTotal" ya NO hace falta ponerlos — como cada pieza es
+// única, la web asume 1 de 1 automáticamente y muestra "Pieza única".
+// Puedes omitir esas dos líneas al copiar el bloque de ejemplo.
+//
 // "precioAntes" = precio tachado. Si no quieres mostrar precio tachado,
 // pon 0.
 // ============================================================
@@ -41,8 +47,6 @@ window.PRODUCTS = [
     imagen: "img/jersey-bayern.jpg",
     precio: 149,
     precioAntes: 189,
-    stock: 4,
-    stockTotal: 8,
     talla: "M/L",
 
     nombre_es: "Bayern Múnich 1971/72",
@@ -68,8 +72,6 @@ window.PRODUCTS = [
     imagen: "img/jersey-milan.jpg",
     precio: 169,
     precioAntes: 215,
-    stock: 2,
-    stockTotal: 8,
     talla: "L",
 
     nombre_es: "AC Milan 1995/96 · Cuarta Eq.",
@@ -95,8 +97,6 @@ window.PRODUCTS = [
     imagen: "img/jeans-501-s.webp",
     precio: 189,
     precioAntes: 249,
-    stock: 1,
-    stockTotal: 8,
     talla: "S (W32)",
 
     nombre_es: "Levi's 501 Original",
@@ -122,8 +122,6 @@ window.PRODUCTS = [
     imagen: "img/jeans-501-l.webp",
     precio: 179,
     precioAntes: 239,
-    stock: 1,
-    stockTotal: 8,
     talla: "L (W34/L32)",
 
     nombre_es: "Levi's 501 Original",
@@ -152,8 +150,6 @@ window.PRODUCTS = [
   //   imagen: "img/real-madrid-9495.jpg",
   //   precio: 159,
   //   precioAntes: 199,
-  //   stock: 3,
-  //   stockTotal: 5,
   //   talla: "M",
   //   nombre_es: "Real Madrid 1994/95",
   //   resumen_es: "Local · Talla M · Algodón original",
