@@ -3,12 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FOMO DROP — Vintage Auténtico. Stock Limitado.</title>
-<meta name="description" content="Camisetas de fútbol y denim vintage originales. Drops limitados, autenticidad verificada. Cuando se agota, no vuelve.">
-<meta property="og:title" content="FOMO DROP — Vintage Auténtico">
-<meta property="og:description" content="Drops limitados de camisetas vintage originales. Se agota y no vuelve.">
-<meta property="og:image" content="img/fomo-promo.jpg">
+<title>FOMO DROP — Camisetas de Fútbol y Denim Vintage Originales | Stock Limitado</title>
+<meta name="description" content="Camisetas de fútbol vintage y denim deadstock originales, verificados pieza por pieza. Drops limitados en España: cuando se agota, no vuelve. Reserva por WhatsApp.">
+<meta name="keywords" content="camisetas de futbol vintage, camisetas retro originales, ropa vintage españa, denim deadstock, levis 501 vintage, camisetas futbol antiguas, streetwear vintage">
+<meta name="robots" content="index, follow">
+<meta name="author" content="FOMO DROP">
+<link rel="canonical" href="https://ayoubgk12-maker.github.io/fomo-drop-/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ayoubgk12-maker.github.io/fomo-drop-/">
+<meta property="og:site_name" content="FOMO DROP">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="FOMO DROP — Camisetas de Fútbol y Denim Vintage Originales">
+<meta property="og:description" content="Drops limitados de camisetas de fútbol y denim vintage originales. Autenticidad verificada. Se agota y no vuelve.">
+<meta property="og:image" content="https://ayoubgk12-maker.github.io/fomo-drop-/img/fomo-promo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FOMO DROP — Camisetas de Fútbol y Denim Vintage Originales">
+<meta name="twitter:description" content="Drops limitados de camisetas de fútbol y denim vintage originales. Autenticidad verificada. Se agota y no vuelve.">
+<meta name="twitter:image" content="https://ayoubgk12-maker.github.io/fomo-drop-/img/fomo-promo.jpg">
+
 <link rel="icon" href="img/logo.png" type="image/png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "FOMO DROP",
+  "url": "https://ayoubgk12-maker.github.io/fomo-drop-/",
+  "logo": "https://ayoubgk12-maker.github.io/fomo-drop-/img/logo.png",
+  "description": "Camisetas de fútbol y denim vintage originales, en drops limitados. Autenticidad verificada pieza por pieza.",
+  "sameAs": [
+    "https://instagram.com/fomodrop",
+    "https://tiktok.com/@fomodrop"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FOMO DROP",
+  "url": "https://ayoubgk12-maker.github.io/fomo-drop-/"
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -814,6 +854,7 @@ function renderProducts(lang){
 
   const t=translations[lang];
   let totalStock=0;
+  const ldProducts=[];
 
   products.forEach(p=>{
     const stock=Number(p.stock)||1;
@@ -831,6 +872,7 @@ function renderProducts(lang){
     const priceStr='€'+p.precio;
     const oldPriceStr=p.precioAntes?('€'+p.precioAntes):'';
     const wa=buildWaLink(lang,name,size,p.precio);
+    const imgAlt=cat+' — '+name;
 
     const card=document.createElement('div');
     card.className='card card--shop';
@@ -846,7 +888,7 @@ function renderProducts(lang){
     card.dataset.wa=wa;
     card.innerHTML=
       '<span class="card__badge">'+badge+'</span>'+
-      '<div class="card__img-wrap"><img src="'+p.imagen+'" alt="'+name+'"></div>'+
+      '<div class="card__img-wrap"><img src="'+p.imagen+'" alt="'+imgAlt+'" loading="lazy"></div>'+
       '<span class="card__cat">'+cat+'</span>'+
       '<h3 class="card__name">'+name+'</h3>'+
       '<p class="card__meta">'+resumen+'</p>'+
@@ -854,6 +896,24 @@ function renderProducts(lang){
       '<div class="card__row"><span class="card__price">'+(oldPriceStr?'<small>'+oldPriceStr+'</small>':'')+priceStr+'</span></div>'+
       '<p class="card__hint">'+t.product_hint+'</p>'+
       '<a class="card__cta" href="'+wa+'" target="_blank" rel="noopener">'+t.product_reserve+'</a>';
+
+    ldProducts.push({
+      "@context":"https://schema.org",
+      "@type":"Product",
+      "name":name,
+      "image":['https://ayoubgk12-maker.github.io/fomo-drop-/'+p.imagen],
+      "description":desc,
+      "sku":p.id,
+      "category":cat,
+      "offers":{
+        "@type":"Offer",
+        "url":"https://ayoubgk12-maker.github.io/fomo-drop-/#drop",
+        "priceCurrency":"EUR",
+        "price":p.precio,
+        "availability":"https://schema.org/InStock",
+        "itemCondition":"https://schema.org/UsedCondition"
+      }
+    });
 
     card.addEventListener('click',(e)=>{
       if(e.target.closest('.card__cta')) return;
@@ -882,6 +942,15 @@ function renderProducts(lang){
   if(heroNum) heroNum.textContent=totalStock;
   const dropDescEl=document.querySelector('[data-i18n="drop_desc"]');
   if(dropDescEl&&t.drop_desc) dropDescEl.textContent=t.drop_desc.replace('{n}',totalStock);
+
+  document.querySelectorAll('script.ld-product').forEach(s=>s.remove());
+  ldProducts.forEach(obj=>{
+    const s=document.createElement('script');
+    s.type='application/ld+json';
+    s.className='ld-product';
+    s.textContent=JSON.stringify(obj);
+    document.head.appendChild(s);
+  });
 }
 
 function applyLanguage(lang){
