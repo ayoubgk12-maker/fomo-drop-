@@ -338,9 +338,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
       <button class="nav__trigger" data-i18n="nav_producto">Producto <span class="caret">▾</span></button>
       <div class="dropdown">
         <a href="#drop"><span data-i18n="nav_producto_actual">Drop actual</span><span class="dropdown__meta" data-i18n="nav_producto_actual_meta">Lo que hay disponible ahora</span></a>
-        <a href="#drop"><span data-i18n="product_bayern_name">Bayern Múnich 1971/72</span><span class="dropdown__meta" data-i18n="nav_producto_bayern_meta">Quedan 4 unidades</span></a>
-        <a href="#drop"><span data-i18n="nav_producto_milan">AC Milan 1995/96</span><span class="dropdown__meta" data-i18n="nav_producto_milan_meta">Quedan 2 unidades</span></a>
-        <a href="#drop"><span data-i18n="nav_producto_jeans">Levi's 501 Deadstock</span><span class="dropdown__meta" data-i18n="nav_producto_jeans_meta">Últimas unidades S y L</span></a>
+        <div id="navProductLinks"></div>
         <a href="#proceso"><span data-i18n="nav_producto_verify">Cómo verificamos autenticidad</span><span class="dropdown__meta" data-i18n="nav_producto_verify_meta">Nuestro proceso, paso a paso</span></a>
       </div>
     </li>
@@ -391,9 +389,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
       <button class="mobile-link"><span data-i18n="nav_producto">Producto</span> <span class="caret">▾</span></button>
       <div class="mobile-sub">
         <a href="#drop" data-i18n="nav_producto_actual">Drop actual</a>
-        <a href="#drop" data-i18n="product_bayern_name">Bayern Múnich 1971/72</a>
-        <a href="#drop" data-i18n="nav_producto_milan">AC Milan 1995/96</a>
-        <a href="#drop" data-i18n="nav_producto_jeans">Levi's 501 Deadstock</a>
+        <div id="mobileProductLinks"></div>
         <a href="#proceso" data-i18n="nav_producto_verify_short">Autenticidad</a>
       </div>
     </div>
@@ -433,7 +429,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
     <a href="#vip" class="btn btn-ghost" data-i18n="hero_cta_ghost">Acceso anticipado VIP</a>
   </div>
   <div class="hero__stock">
-    <div class="stock__item"><span class="stock__num">8</span><span class="stock__label" data-i18n="hero_stock_pieces">Piezas restantes</span></div>
+    <div class="stock__item"><span class="stock__num" id="heroStockNum">8</span><span class="stock__label" data-i18n="hero_stock_pieces">Piezas restantes</span></div>
     <div class="stock__item"><span class="stock__num">03h 42m</span><span class="stock__label" data-i18n="hero_stock_time">Para cerrar el drop</span></div>
     <div class="stock__item"><span class="stock__num">100%</span><span class="stock__label" data-i18n="hero_stock_auth">Autenticidad verificada</span></div>
   </div>
@@ -482,111 +478,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
     <p class="section-desc" data-i18n="drop_desc">8 piezas en total, entre camisetas y denim. Cuando el contador llegue a cero, esta colección se retira del sitio para siempre.</p>
   </div>
 
-  <div class="drop-grid reveal">
-    <div class="card card--shop"
-      data-key="bayern"
-      data-cat="Fútbol Vintage"
-      data-name="Bayern Múnich 1971/72"
-      data-size="Talla M/L"
-      data-desc="Camiseta local del Bayern Múnich, temporada 1971/72. Bandas verticales rojo y blanco con el escudo del club bordado en el pecho. Pieza de algodón original de época, corte clásico entallado y costuras de la época sin alterar."
-      data-price="€149" data-oldprice="€189"
-      data-stock="4 de 8 disponibles"
-      data-img="img/jersey-bayern.jpg"
-      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20Bayern%20M%C3%BAnich%201971/72%20%28Talla%20M/L%29%20a%20149%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
-      <span class="card__badge" data-i18n="product_bayern_badge">Quedan 4</span>
-      <div class="card__img-wrap"><img src="img/jersey-bayern.jpg" alt="Bayern Múnich 1971/72"></div>
-      <span class="card__cat" data-i18n="product_bayern_cat">Fútbol Vintage</span>
-      <h3 class="card__name" data-i18n="product_bayern_name">Bayern Múnich 1971/72</h3>
-      <p class="card__meta" data-i18n="product_bayern_meta">Local · Talla M/L · Algodón original</p>
-      <div class="card__stockbar">
-        <div class="track"><div class="fill" style="width:50%"></div></div>
-        <div class="lbl" data-i18n="product_bayern_stocklbl">4 de 8 disponibles</div>
-      </div>
-      <div class="card__row">
-        <span class="card__price"><small>€189</small>€149</span>
-      </div>
-      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
-      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20Bayern%20M%C3%BAnich%201971/72%20%28Talla%20M/L%29%20a%20149%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
-    </div>
-
-    <div class="card card--shop"
-      data-key="milan"
-      data-cat="Fútbol Vintage"
-      data-name="AC Milan 1995/96 · Cuarta Eq."
-      data-size="Talla L"
-      data-desc="Cuarta equipación del AC Milan 1995/96, patrocinada por Opel. Azul con detalles en rojo y negro y estampado geométrico característico de los 90. Tejido técnico de poliéster original, sin reediciones."
-      data-price="€169" data-oldprice="€215"
-      data-stock="2 de 8 disponibles"
-      data-img="img/jersey-milan.jpg"
-      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20AC%20Milan%201995/96%20Cuarta%20Equipaci%C3%B3n%20%28Talla%20L%29%20a%20169%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
-      <span class="card__badge" data-i18n="product_milan_badge">Quedan 2</span>
-      <div class="card__img-wrap"><img src="img/jersey-milan.jpg" alt="AC Milan 1995/96 Cuarta Equipación"></div>
-      <span class="card__cat" data-i18n="product_milan_cat">Fútbol Vintage</span>
-      <h3 class="card__name" data-i18n="product_milan_name">AC Milan 1995/96 · Cuarta Eq.</h3>
-      <p class="card__meta" data-i18n="product_milan_meta">Cuarta equipación · Talla L · Poliéster original</p>
-      <div class="card__stockbar">
-        <div class="track"><div class="fill" style="width:25%"></div></div>
-        <div class="lbl" data-i18n="product_milan_stocklbl">2 de 8 disponibles</div>
-      </div>
-      <div class="card__row">
-        <span class="card__price"><small>€215</small>€169</span>
-      </div>
-      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
-      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20la%20camiseta%20AC%20Milan%201995/96%20Cuarta%20Equipaci%C3%B3n%20%28Talla%20L%29%20a%20169%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
-    </div>
-
-    <div class="card card--shop"
-      data-key="jeansS"
-      data-cat="Denim Deadstock"
-      data-name="Levi's 501 Original"
-      data-size="Talla S (W32)"
-      data-desc="Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón original y el parche de cuero intacto. Corte recto clásico, tal como salió de fábrica."
-      data-price="€189" data-oldprice="€249"
-      data-stock="Última unidad"
-      data-img="img/jeans-501-s.webp"
-      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20S%20/%20W32%29%20a%20189%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
-      <span class="card__badge" data-i18n="product_last_unit">Última unidad</span>
-      <div class="card__img-wrap"><img src="img/jeans-501-s.webp" alt="Levi's 501 Original deadstock talla S"></div>
-      <span class="card__cat" data-i18n="product_jeans_cat">Denim Deadstock</span>
-      <h3 class="card__name" data-i18n="product_jeansS_name">Levi's 501 Original</h3>
-      <p class="card__meta" data-i18n="product_jeansS_meta">Talla S (W32) · Denim crudo sin lavar · Deadstock con etiqueta</p>
-      <div class="card__stockbar">
-        <div class="track"><div class="fill" style="width:12%"></div></div>
-        <div class="lbl" data-i18n="product_jeansS_stocklbl">1 de 8 disponibles</div>
-      </div>
-      <div class="card__row">
-        <span class="card__price"><small>€249</small>€189</span>
-      </div>
-      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
-      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20S%20/%20W32%29%20a%20189%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
-    </div>
-
-    <div class="card card--shop"
-      data-key="jeansL"
-      data-cat="Denim Deadstock"
-      data-name="Levi's 501 Original"
-      data-size="Talla L (W34/L32)"
-      data-desc="Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón y el patch de piel intacto. Corte recto clásico, tal como salió de fábrica."
-      data-price="€179" data-oldprice="€239"
-      data-stock="Última unidad"
-      data-img="img/jeans-501-l.webp"
-      data-wa="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20L%20/%20W34%20L32%29%20a%20179%E2%82%AC.%20%C2%BFSigue%20disponible%3F">
-      <span class="card__badge" data-i18n="product_last_unit">Última unidad</span>
-      <div class="card__img-wrap"><img src="img/jeans-501-l.webp" alt="Levi's 501 Original deadstock talla L"></div>
-      <span class="card__cat" data-i18n="product_jeans_cat">Denim Deadstock</span>
-      <h3 class="card__name" data-i18n="product_jeansL_name">Levi's 501 Original</h3>
-      <p class="card__meta" data-i18n="product_jeansL_meta">Talla L (W34/L32) · Denim crudo sin lavar · Deadstock con etiqueta</p>
-      <div class="card__stockbar">
-        <div class="track"><div class="fill" style="width:12%"></div></div>
-        <div class="lbl" data-i18n="product_jeansL_stocklbl">1 de 8 disponibles</div>
-      </div>
-      <div class="card__row">
-        <span class="card__price"><small>€239</small>€179</span>
-      </div>
-      <p class="card__hint" data-i18n="product_hint">Toca la pieza para ver el detalle</p>
-      <a class="card__cta" data-i18n="product_reserve" href="https://wa.me/34612234308?text=Hola%20FOMO%20DROP%21%20Quiero%20reservar%20el%20Levi%27s%20501%20Original%20deadstock%20%28Talla%20L%20/%20W34%20L32%29%20a%20179%E2%82%AC.%20%C2%BFSigue%20disponible%3F" target="_blank" rel="noopener">Reservar esta pieza</a>
-    </div>
-
+  <div class="drop-grid reveal" id="dropGrid">
     <div class="card card--next">
       <span class="lock" data-i18n="next_label">DROP #013</span>
       <p data-i18n="next_desc">El próximo lote se anuncia solo por email y se agota en horas. Sin lista VIP, te enteras cuando ya no queda nada.</p>
@@ -792,6 +684,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
   </div>
 </div>
 
+<script src="products.js"></script>
 <script>
 // ============ TRANSLATIONS ============
 const translations = {
@@ -802,12 +695,9 @@ nav_rrss:`RRSS`,nav_opiniones:`Opiniones`,nav_faq:`FAQ`,nav_cta_vip:`Lista VIP`,
 hero_eyebrow:`DROP #012 · EN VIVO AHORA`,hero_title:`CADA DROP<br>ES <span class="line2">IRREPETIBLE.</span>`,hero_sub:`Camisetas de fútbol y denim vintage originales, verificados pieza por pieza. Cuando un lote se agota, no se repone jamás. No es una promesa de marketing: es la única regla del negocio.`,hero_cta_primary:`Ver el drop actual →`,hero_cta_ghost:`Acceso anticipado VIP`,hero_stock_pieces:`Piezas restantes`,hero_stock_time:`Para cerrar el drop`,hero_stock_auth:`Autenticidad verificada`,hero_scroll:`SCROLL`,
 marquee_1:`STOCK LIMITADO — NO SE REPONE`,marquee_2:`ENVÍO ASEGURADO EN 48-72H`,marquee_3:`PIEZAS VERIFICADAS AL 100%`,marquee_4:`DEVOLUCIÓN EN 14 DÍAS`,
 manifesto_eyebrow:`El manifiesto`,manifesto_quote:`No vendemos ropa. Vendemos <em>el minuto exacto</em> en que decidiste no dejarla pasar.`,manifesto_body1:`Cada pieza que entra al catálogo pasa por un proceso de curaduría manual: origen verificado, año confirmado, estado revisado a mano. No reponemos stock porque el vintage real no se fabrica bajo demanda — se encuentra, una vez, y después desaparece.`,manifesto_body2:`Si la ves y dudas, alguien más no dudará. Así ha sido en los 11 drops anteriores.`,manifesto_signature:`— Equipo de curaduría, FOMO DROP`,manifesto_panel_label:`Piezas repuestas`,
-drop_eyebrow:`Drop #012 · Julio 2026`,drop_title:`El drop de<br>esta semana`,drop_desc:`8 piezas en total, entre camisetas y denim. Cuando el contador llegue a cero, esta colección se retira del sitio para siempre.`,
-product_hint:`Toca la pieza para ver el detalle`,product_reserve:`Reservar esta pieza`,product_last_unit:`Última unidad`,
-product_bayern_cat:`Fútbol Vintage`,product_bayern_name:`Bayern Múnich 1971/72`,product_bayern_meta:`Local · Talla M/L · Algodón original`,product_bayern_badge:`Quedan 4`,product_bayern_stocklbl:`4 de 8 disponibles`,product_bayern_size:`Talla M/L`,product_bayern_desc:`Camiseta local del Bayern Múnich, temporada 1971/72. Bandas verticales rojo y blanco con el escudo del club bordado en el pecho. Pieza de algodón original de época, corte clásico entallado y costuras de la época sin alterar.`,
-product_milan_cat:`Fútbol Vintage`,product_milan_name:`AC Milan 1995/96 · Cuarta Eq.`,product_milan_meta:`Cuarta equipación · Talla L · Poliéster original`,product_milan_badge:`Quedan 2`,product_milan_stocklbl:`2 de 8 disponibles`,product_milan_size:`Talla L`,product_milan_desc:`Cuarta equipación del AC Milan 1995/96, patrocinada por Opel. Azul con detalles en rojo y negro y estampado geométrico característico de los 90. Tejido técnico de poliéster original, sin reediciones.`,
-product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Talla S (W32) · Denim crudo sin lavar · Deadstock con etiqueta`,product_jeansS_stocklbl:`1 de 8 disponibles`,product_jeansS_size:`Talla S (W32)`,product_jeansS_desc:`Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón original y el parche de cuero intacto. Corte recto clásico, tal como salió de fábrica.`,
-product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Talla L (W34/L32) · Denim crudo sin lavar · Deadstock con etiqueta`,product_jeansL_stocklbl:`1 de 8 disponibles`,product_jeansL_size:`Talla L (W34/L32)`,product_jeansL_desc:`Vaquero Levi's 501 Original en denim crudo sin lavar. Deadstock: nunca ha sido usado, conserva la etiqueta de cartón y el patch de piel intacto. Corte recto clásico, tal como salió de fábrica.`,
+drop_eyebrow:`Drop #012 · Julio 2026`,drop_title:`El drop de<br>esta semana`,drop_desc:`{n} piezas en total, entre camisetas y denim. Cuando el contador llegue a cero, esta colección se retira del sitio para siempre.`,
+product_hint:`Toca la pieza para ver el detalle`,product_reserve:`Reservar esta pieza`,product_last_unit:`Última unidad`,product_badge_left:`Quedan {n}`,product_stock_of:`{n} de {total} disponibles`,
+cat_futbol:`Fútbol Vintage`,cat_denim:`Denim Deadstock`,cat_otro:`Pieza Vintage`,
 next_label:`DROP #013`,next_desc:`El próximo lote se anuncia solo por email y se agota en horas. Sin lista VIP, te enteras cuando ya no queda nada.`,next_cta:`Unirme a la lista`,
 proceso_eyebrow:`Autenticidad`,proceso_title:`Cero riesgo.<br>Cero réplicas.`,proceso_desc:`Compramos vintage online desde hace años. Sabemos exactamente dónde falla la confianza — y lo resolvemos así.`,
 proceso_1_h:`Búsqueda y origen`,proceso_1_p:`Rastreamos coleccionistas y archivos verificados en toda Europa, pieza por pieza.`,proceso_2_h:`Verificación manual`,proceso_2_p:`Cada camiseta se autentica a mano: etiqueta, costura, año y estado real de la tela.`,proceso_3_h:`Fotografía y catálogo`,proceso_3_p:`Publicamos solo lo que ya está en nuestras manos. Nunca vendemos algo que no existe.`,proceso_4_h:`Envío asegurado`,proceso_4_p:`Empaque protegido y seguimiento en tiempo real. Llega en 48–72h o te avisamos antes.`,
@@ -828,12 +718,9 @@ nav_rrss:`Social`,nav_opiniones:`Reviews`,nav_faq:`FAQ`,nav_cta_vip:`VIP List`,
 hero_eyebrow:`DROP #012 · LIVE NOW`,hero_title:`EVERY DROP<br>IS <span class="line2">ONE OF A KIND.</span>`,hero_sub:`Original vintage football shirts and denim, verified piece by piece. Once a batch sells out, it never comes back. It's not a marketing line — it's the only rule of the business.`,hero_cta_primary:`See the current drop →`,hero_cta_ghost:`Early VIP access`,hero_stock_pieces:`Pieces left`,hero_stock_time:`Until the drop closes`,hero_stock_auth:`Authenticity verified`,hero_scroll:`SCROLL`,
 marquee_1:`LIMITED STOCK — NEVER RESTOCKED`,marquee_2:`INSURED SHIPPING IN 48-72H`,marquee_3:`100% VERIFIED PIECES`,marquee_4:`14-DAY RETURNS`,
 manifesto_eyebrow:`The manifesto`,manifesto_quote:`We don't sell clothes. We sell <em>the exact minute</em> you decided not to let it go.`,manifesto_body1:`Every piece that enters the catalogue goes through manual curation: verified origin, confirmed year, condition checked by hand. We never restock, because real vintage isn't made to order — it's found once, then it's gone.`,manifesto_body2:`If you're looking at it and hesitating, someone else won't. That's how it's gone for the last 11 drops.`,manifesto_signature:`— Curation team, FOMO DROP`,manifesto_panel_label:`Pieces restocked`,
-drop_eyebrow:`Drop #012 · July 2026`,drop_title:`This week's<br>drop`,drop_desc:`8 pieces in total, shirts and denim combined. Once the counter hits zero, this collection is pulled from the site for good.`,
-product_hint:`Tap the piece to see the details`,product_reserve:`Reserve this piece`,product_last_unit:`Last unit`,
-product_bayern_cat:`Vintage Football`,product_bayern_name:`Bayern Munich 1971/72`,product_bayern_meta:`Home · Size M/L · Original cotton`,product_bayern_badge:`4 left`,product_bayern_stocklbl:`4 of 8 available`,product_bayern_size:`Size M/L`,product_bayern_desc:`Bayern Munich home shirt, 1971/72 season. Vertical red and white stripes with the club crest embroidered on the chest. Original period cotton piece, classic fitted cut, original-era stitching untouched.`,
-product_milan_cat:`Vintage Football`,product_milan_name:`AC Milan 1995/96 · 4th Kit`,product_milan_meta:`Fourth kit · Size L · Original polyester`,product_milan_badge:`2 left`,product_milan_stocklbl:`2 of 8 available`,product_milan_size:`Size L`,product_milan_desc:`AC Milan's 1995/96 fourth kit, sponsored by Opel. Blue with red and black details and the geometric print typical of the 90s. Original technical polyester fabric, no reissue.`,
-product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Size S (W32) · Raw, unwashed denim · Deadstock with tag`,product_jeansS_stocklbl:`1 of 8 available`,product_jeansS_size:`Size S (W32)`,product_jeansS_desc:`Levi's 501 Original in raw, unwashed denim. Deadstock: never worn, still has the original cardboard tag and intact leather patch. Classic straight cut, exactly as it left the factory.`,
-product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Size L (W34/L32) · Raw, unwashed denim · Deadstock with tag`,product_jeansL_stocklbl:`1 of 8 available`,product_jeansL_size:`Size L (W34/L32)`,product_jeansL_desc:`Levi's 501 Original in raw, unwashed denim. Deadstock: never worn, still has the original cardboard tag and leather patch intact. Classic straight cut, exactly as it left the factory.`,
+drop_eyebrow:`Drop #012 · July 2026`,drop_title:`This week's<br>drop`,drop_desc:`{n} pieces in total, shirts and denim combined. Once the counter hits zero, this collection is pulled from the site for good.`,
+product_hint:`Tap the piece to see the details`,product_reserve:`Reserve this piece`,product_last_unit:`Last unit`,product_badge_left:`{n} left`,product_stock_of:`{n} of {total} available`,
+cat_futbol:`Vintage Football`,cat_denim:`Denim Deadstock`,cat_otro:`Vintage Piece`,
 next_label:`DROP #013`,next_desc:`The next batch is only announced by email and sells out in hours. Without the VIP list, you'll find out when there's nothing left.`,next_cta:`Join the list`,
 proceso_eyebrow:`Authenticity`,proceso_title:`Zero risk.<br>Zero replicas.`,proceso_desc:`We've been buying vintage online for years. We know exactly where trust breaks down — so here's how we fix it.`,
 proceso_1_h:`Sourcing & origin`,proceso_1_p:`We track down collectors and verified archives across Europe, piece by piece.`,proceso_2_h:`Manual verification`,proceso_2_p:`Every shirt is authenticated by hand: tag, stitching, year and the real condition of the fabric.`,proceso_3_h:`Photography & catalogue`,proceso_3_p:`We only list what's already in our hands. We never sell something that doesn't exist.`,proceso_4_h:`Insured shipping`,proceso_4_p:`Protected packaging and real-time tracking. Arrives in 48–72h, or we tell you before it doesn't.`,
@@ -854,12 +741,9 @@ nav_rrss:`Réseaux`,nav_opiniones:`Avis`,nav_faq:`FAQ`,nav_cta_vip:`Liste VIP`,
 hero_eyebrow:`DROP #012 · EN DIRECT`,hero_title:`CHAQUE DROP<br>EST <span class="line2">UNIQUE.</span>`,hero_sub:`Maillots de football et denim vintage originaux, vérifiés pièce par pièce. Une fois un lot épuisé, il ne revient jamais. Ce n'est pas un argument marketing : c'est la seule règle de la maison.`,hero_cta_primary:`Voir le drop en cours →`,hero_cta_ghost:`Accès VIP anticipé`,hero_stock_pieces:`Pièces restantes`,hero_stock_time:`Avant la fin du drop`,hero_stock_auth:`Authenticité vérifiée`,hero_scroll:`DÉFILER`,
 marquee_1:`STOCK LIMITÉ — JAMAIS RÉAPPROVISIONNÉ`,marquee_2:`LIVRAISON ASSURÉE EN 48-72H`,marquee_3:`PIÈCES VÉRIFIÉES À 100%`,marquee_4:`RETOURS SOUS 14 JOURS`,
 manifesto_eyebrow:`Le manifeste`,manifesto_quote:`Nous ne vendons pas des vêtements. Nous vendons <em>la minute exacte</em> où vous avez décidé de ne pas la laisser filer.`,manifesto_body1:`Chaque pièce du catalogue passe par une curation manuelle : origine vérifiée, année confirmée, état contrôlé à la main. Nous ne réapprovisionnons jamais, car le vrai vintage ne se fabrique pas sur commande — il se trouve, une fois, puis disparaît.`,manifesto_body2:`Si vous hésitez en la voyant, quelqu'un d'autre n'hésitera pas. C'est comme ça depuis les 11 derniers drops.`,manifesto_signature:`— L'équipe curation, FOMO DROP`,manifesto_panel_label:`Pièces réapprovisionnées`,
-drop_eyebrow:`Drop #012 · Juillet 2026`,drop_title:`Le drop de<br>la semaine`,drop_desc:`8 pièces au total, maillots et denim confondus. Quand le compteur atteint zéro, cette collection quitte le site pour toujours.`,
-product_hint:`Touchez la pièce pour voir le détail`,product_reserve:`Réserver cette pièce`,product_last_unit:`Dernière pièce`,
-product_bayern_cat:`Football Vintage`,product_bayern_name:`Bayern Munich 1971/72`,product_bayern_meta:`Domicile · Taille M/L · Coton d'origine`,product_bayern_badge:`Il reste 4`,product_bayern_stocklbl:`4 sur 8 disponibles`,product_bayern_size:`Taille M/L`,product_bayern_desc:`Maillot domicile du Bayern Munich, saison 1971/72. Bandes verticales rouges et blanches avec l'écusson du club brodé sur la poitrine. Pièce en coton d'origine, coupe classique ajustée, coutures d'époque intactes.`,
-product_milan_cat:`Football Vintage`,product_milan_name:`AC Milan 1995/96 · 4ème Maillot`,product_milan_meta:`Quatrième maillot · Taille L · Polyester d'origine`,product_milan_badge:`Il reste 2`,product_milan_stocklbl:`2 sur 8 disponibles`,product_milan_size:`Taille L`,product_milan_desc:`Quatrième maillot de l'AC Milan 1995/96, sponsorisé par Opel. Bleu avec détails rouge et noir et motif géométrique typique des années 90. Tissu technique en polyester d'origine, sans réédition.`,
-product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Taille S (W32) · Denim brut non lavé · Deadstock avec étiquette`,product_jeansS_stocklbl:`1 sur 8 disponibles`,product_jeansS_size:`Taille S (W32)`,product_jeansS_desc:`Jean Levi's 501 Original en denim brut non lavé. Deadstock : jamais porté, étiquette carton d'origine et patch en cuir intacts. Coupe droite classique, tel que sorti d'usine.`,
-product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Taille L (W34/L32) · Denim brut non lavé · Deadstock avec étiquette`,product_jeansL_stocklbl:`1 sur 8 disponibles`,product_jeansL_size:`Taille L (W34/L32)`,product_jeansL_desc:`Jean Levi's 501 Original en denim brut non lavé. Deadstock : jamais porté, étiquette carton et patch en cuir intacts. Coupe droite classique, tel que sorti d'usine.`,
+drop_eyebrow:`Drop #012 · Juillet 2026`,drop_title:`Le drop de<br>la semaine`,drop_desc:`{n} pièces au total, maillots et denim confondus. Quand le compteur atteint zéro, cette collection quitte le site pour toujours.`,
+product_hint:`Touchez la pièce pour voir le détail`,product_reserve:`Réserver cette pièce`,product_last_unit:`Dernière pièce`,product_badge_left:`Il reste {n}`,product_stock_of:`{n} sur {total} disponibles`,
+cat_futbol:`Football Vintage`,cat_denim:`Denim Deadstock`,cat_otro:`Pièce Vintage`,
 next_label:`DROP #013`,next_desc:`Le prochain lot n'est annoncé que par email et part en quelques heures. Sans la liste VIP, vous l'apprendrez quand il n'y aura plus rien.`,next_cta:`Rejoindre la liste`,
 proceso_eyebrow:`Authenticité`,proceso_title:`Zéro risque.<br>Zéro contrefaçon.`,proceso_desc:`Nous achetons du vintage en ligne depuis des années. Nous savons exactement où se joue la confiance — et voici comment nous la garantissons.`,
 proceso_1_h:`Recherche et origine`,proceso_1_p:`Nous traquons collectionneurs et archives vérifiées partout en Europe, pièce par pièce.`,proceso_2_h:`Vérification manuelle`,proceso_2_p:`Chaque maillot est authentifié à la main : étiquette, coutures, année et état réel du tissu.`,proceso_3_h:`Photo et mise en catalogue`,proceso_3_p:`Nous ne publions que ce que nous avons déjà entre les mains. Nous ne vendons jamais ce qui n'existe pas.`,proceso_4_h:`Livraison assurée`,proceso_4_p:`Emballage protégé et suivi en temps réel. Livré en 48–72h, ou nous vous prévenons avant.`,
@@ -880,12 +764,9 @@ nav_rrss:`Social Media`,nav_opiniones:`Bewertungen`,nav_faq:`FAQ`,nav_cta_vip:`V
 hero_eyebrow:`DROP #012 · JETZT LIVE`,hero_title:`JEDER DROP<br>IST <span class="line2">EINMALIG.</span>`,hero_sub:`Original Vintage-Fußballtrikots und Denim, Stück für Stück verifiziert. Ist eine Charge ausverkauft, kommt sie nie wieder. Das ist kein Marketing-Spruch, sondern die einzige Regel im Haus.`,hero_cta_primary:`Aktuellen Drop ansehen →`,hero_cta_ghost:`Früher VIP-Zugang`,hero_stock_pieces:`Stücke übrig`,hero_stock_time:`Bis der Drop schließt`,hero_stock_auth:`Echtheit geprüft`,hero_scroll:`SCROLLEN`,
 marquee_1:`BEGRENZTER BESTAND — WIRD NIE NACHGEFÜLLT`,marquee_2:`VERSICHERTER VERSAND IN 48-72H`,marquee_3:`STÜCKE ZU 100% GEPRÜFT`,marquee_4:`RÜCKGABE INNERHALB 14 TAGEN`,
 manifesto_eyebrow:`Das Manifest`,manifesto_quote:`Wir verkaufen keine Kleidung. Wir verkaufen <em>den genauen Moment</em>, in dem du dich entschieden hast, sie nicht ziehen zu lassen.`,manifesto_body1:`Jedes Stück im Katalog durchläuft eine manuelle Kuratierung: Herkunft geprüft, Jahr bestätigt, Zustand von Hand kontrolliert. Wir füllen nie nach, denn echtes Vintage wird nicht auf Bestellung gefertigt — man findet es einmal, dann ist es weg.`,manifesto_body2:`Wenn du zögerst, tut es jemand anderes nicht. So war es bei den letzten 11 Drops.`,manifesto_signature:`— Kuratierungsteam, FOMO DROP`,manifesto_panel_label:`Nachgefüllte Stücke`,
-drop_eyebrow:`Drop #012 · Juli 2026`,drop_title:`Der Drop<br>dieser Woche`,drop_desc:`8 Stück insgesamt, Trikots und Denim zusammen. Wenn der Zähler null erreicht, verschwindet diese Kollektion für immer von der Seite.`,
-product_hint:`Auf das Stück tippen, um Details zu sehen`,product_reserve:`Dieses Stück reservieren`,product_last_unit:`Letztes Stück`,
-product_bayern_cat:`Vintage Fußball`,product_bayern_name:`Bayern München 1971/72`,product_bayern_meta:`Heimtrikot · Größe M/L · Original-Baumwolle`,product_bayern_badge:`Noch 4`,product_bayern_stocklbl:`4 von 8 verfügbar`,product_bayern_size:`Größe M/L`,product_bayern_desc:`Heimtrikot des FC Bayern München, Saison 1971/72. Vertikale rot-weiße Streifen mit gesticktem Vereinswappen auf der Brust. Original-Baumwollstück aus der Zeit, klassischer, tailliert geschnitten, unveränderte Nähte der Epoche.`,
-product_milan_cat:`Vintage Fußball`,product_milan_name:`AC Mailand 1995/96 · 4. Trikot`,product_milan_meta:`Viertes Trikot · Größe L · Original-Polyester`,product_milan_badge:`Noch 2`,product_milan_stocklbl:`2 von 8 verfügbar`,product_milan_size:`Größe L`,product_milan_desc:`Viertes Trikot des AC Mailand 1995/96, gesponsert von Opel. Blau mit roten und schwarzen Details und dem für die 90er typischen geometrischen Muster. Original-Funktionspolyester, keine Neuauflage.`,
-product_jeans_cat:`Denim Deadstock`,product_jeansS_name:`Levi's 501 Original`,product_jeansS_meta:`Größe S (W32) · Roher, ungewaschener Denim · Deadstock mit Etikett`,product_jeansS_stocklbl:`1 von 8 verfügbar`,product_jeansS_size:`Größe S (W32)`,product_jeansS_desc:`Levi's 501 Original aus rohem, ungewaschenem Denim. Deadstock: nie getragen, mit originalem Pappetikett und intaktem Lederpatch. Klassischer gerader Schnitt, genau wie ab Werk.`,
-product_jeansL_name:`Levi's 501 Original`,product_jeansL_meta:`Größe L (W34/L32) · Roher, ungewaschener Denim · Deadstock mit Etikett`,product_jeansL_stocklbl:`1 von 8 verfügbar`,product_jeansL_size:`Größe L (W34/L32)`,product_jeansL_desc:`Levi's 501 Original aus rohem, ungewaschenem Denim. Deadstock: nie getragen, mit originalem Pappetikett und Lederpatch intakt. Klassischer gerader Schnitt, genau wie ab Werk.`,
+drop_eyebrow:`Drop #012 · Juli 2026`,drop_title:`Der Drop<br>dieser Woche`,drop_desc:`{n} Stück insgesamt, Trikots und Denim zusammen. Wenn der Zähler null erreicht, verschwindet diese Kollektion für immer von der Seite.`,
+product_hint:`Auf das Stück tippen, um Details zu sehen`,product_reserve:`Dieses Stück reservieren`,product_last_unit:`Letztes Stück`,product_badge_left:`Noch {n}`,product_stock_of:`{n} von {total} verfügbar`,
+cat_futbol:`Vintage Fußball`,cat_denim:`Denim Deadstock`,cat_otro:`Vintage-Stück`,
 next_label:`DROP #013`,next_desc:`Die nächste Charge wird nur per E-Mail angekündigt und ist in Stunden ausverkauft. Ohne VIP-Liste erfährst du es erst, wenn nichts mehr da ist.`,next_cta:`Der Liste beitreten`,
 proceso_eyebrow:`Echtheit`,proceso_title:`Null Risiko.<br>Null Fälschungen.`,proceso_desc:`Wir kaufen seit Jahren Vintage online. Wir wissen genau, wo Vertrauen scheitert — und so lösen wir es.`,
 proceso_1_h:`Suche & Herkunft`,proceso_1_p:`Wir spüren Sammler und verifizierte Archive in ganz Europa auf, Stück für Stück.`,proceso_2_h:`Manuelle Prüfung`,proceso_2_p:`Jedes Trikot wird von Hand authentifiziert: Etikett, Naht, Jahr und der reale Zustand des Stoffs.`,proceso_3_h:`Fotografie & Katalog`,proceso_3_p:`Wir listen nur, was wir bereits in Händen halten. Wir verkaufen nie etwas, das es nicht gibt.`,proceso_4_h:`Versicherter Versand`,proceso_4_p:`Geschützte Verpackung und Echtzeit-Tracking. Ankunft in 48–72h — oder wir sagen es dir vorher.`,
@@ -901,8 +782,113 @@ wa_template:`Hallo FOMO DROP! Ich möchte reservieren: {name} ({size}) für {pri
 }
 };
 
-const PRODUCT_KEYS=['bayern','milan','jeansS','jeansL'];
 let currentLang='es';
+
+// ============ PRODUCTOS (leídos desde products.js) ============
+function pickField(p,field,lang){
+  const val=p[field+'_'+lang];
+  return (val&&String(val).trim())?val:p[field+'_es'];
+}
+function badgeText(lang,stock){
+  const t=translations[lang];
+  if(stock<=1) return t.product_last_unit;
+  return t.product_badge_left.replace('{n}',stock);
+}
+function stockLabelText(lang,stock,total){
+  return translations[lang].product_stock_of.replace('{n}',stock).replace('{total}',total);
+}
+function catLabel(lang,categoria){
+  const key='cat_'+categoria;
+  return translations[lang][key]||categoria;
+}
+function buildWaLink(lang,name,size,price){
+  const t=translations[lang];
+  const msg=t.wa_template.replace('{name}',name).replace('{size}',size).replace('{price}','€'+price);
+  return 'https://wa.me/34612234308?text='+encodeURIComponent(msg);
+}
+function renderProducts(lang){
+  const products=window.PRODUCTS||[];
+  const grid=document.getElementById('dropGrid');
+  if(!grid) return;
+  const nextCard=grid.querySelector('.card--next');
+  grid.querySelectorAll('.card--shop').forEach(c=>c.remove());
+
+  const navList=document.getElementById('navProductLinks');
+  const mobileList=document.getElementById('mobileProductLinks');
+  if(navList) navList.innerHTML='';
+  if(mobileList) mobileList.innerHTML='';
+
+  const t=translations[lang];
+  let totalStock=0;
+
+  products.forEach(p=>{
+    const stock=Number(p.stock)||0;
+    const total=Number(p.stockTotal)||stock;
+    totalStock+=stock;
+
+    const name=pickField(p,'nombre',lang);
+    const size=p.talla||'';
+    const resumen=pickField(p,'resumen',lang);
+    const desc=pickField(p,'descripcion',lang);
+    const cat=catLabel(lang,p.categoria);
+    const badge=badgeText(lang,stock);
+    const stockLbl=stockLabelText(lang,stock,total);
+    const pct=Math.max(4,Math.min(100,Math.round((stock/total)*100)));
+    const priceStr='€'+p.precio;
+    const oldPriceStr=p.precioAntes?('€'+p.precioAntes):'';
+    const wa=buildWaLink(lang,name,size,p.precio);
+
+    const card=document.createElement('div');
+    card.className='card card--shop';
+    card.dataset.key=p.id;
+    card.dataset.cat=cat;
+    card.dataset.name=name;
+    card.dataset.size=size;
+    card.dataset.desc=desc;
+    card.dataset.price=priceStr;
+    card.dataset.oldprice=oldPriceStr;
+    card.dataset.stock=stockLbl;
+    card.dataset.img=p.imagen;
+    card.dataset.wa=wa;
+    card.innerHTML=
+      '<span class="card__badge">'+badge+'</span>'+
+      '<div class="card__img-wrap"><img src="'+p.imagen+'" alt="'+name+'"></div>'+
+      '<span class="card__cat">'+cat+'</span>'+
+      '<h3 class="card__name">'+name+'</h3>'+
+      '<p class="card__meta">'+resumen+'</p>'+
+      '<div class="card__stockbar"><div class="track"><div class="fill" style="width:'+pct+'%"></div></div><div class="lbl">'+stockLbl+'</div></div>'+
+      '<div class="card__row"><span class="card__price">'+(oldPriceStr?'<small>'+oldPriceStr+'</small>':'')+priceStr+'</span></div>'+
+      '<p class="card__hint">'+t.product_hint+'</p>'+
+      '<a class="card__cta" href="'+wa+'" target="_blank" rel="noopener">'+t.product_reserve+'</a>';
+
+    card.addEventListener('click',(e)=>{
+      if(e.target.closest('.card__cta')) return;
+      openModal(card);
+    });
+    card.addEventListener('mouseenter',()=>{ring.style.width='54px';ring.style.height='54px';cursor.style.background='#fff';});
+    card.addEventListener('mouseleave',()=>{ring.style.width='34px';ring.style.height='34px';cursor.style.background='var(--red)';});
+
+    if(nextCard) grid.insertBefore(card,nextCard); else grid.appendChild(card);
+
+    if(navList){
+      const a=document.createElement('a');
+      a.href='#drop';
+      a.innerHTML='<span>'+name+'</span><span class="dropdown__meta">'+badge+'</span>';
+      navList.appendChild(a);
+    }
+    if(mobileList){
+      const a=document.createElement('a');
+      a.href='#drop';
+      a.textContent=name;
+      mobileList.appendChild(a);
+    }
+  });
+
+  const heroNum=document.getElementById('heroStockNum');
+  if(heroNum) heroNum.textContent=totalStock;
+  const dropDescEl=document.querySelector('[data-i18n="drop_desc"]');
+  if(dropDescEl&&t.drop_desc) dropDescEl.textContent=t.drop_desc.replace('{n}',totalStock);
+}
 
 function applyLanguage(lang){
   if(!translations[lang]) lang='es';
@@ -921,23 +907,7 @@ function applyLanguage(lang){
     const key=el.getAttribute('data-i18n-placeholder');
     if(t[key]!==undefined) el.placeholder=t[key];
   });
-  // sync product dataset (used by the modal) from the now-translated card text + build WhatsApp links
-  document.querySelectorAll('.card--shop').forEach(card=>{
-    const key=card.dataset.key;
-    if(!key) return;
-    const nameEl=card.querySelector('.card__name'), catEl=card.querySelector('.card__cat'), stockEl=card.querySelector('.card__stockbar .lbl');
-    const name=nameEl?nameEl.textContent:card.dataset.name;
-    const size=t['product_'+key+'_size']||card.dataset.size;
-    const desc=t['product_'+key+'_desc']||card.dataset.desc;
-    const cat=catEl?catEl.textContent:card.dataset.cat;
-    const stock=stockEl?stockEl.textContent:card.dataset.stock;
-    card.dataset.name=name; card.dataset.size=size; card.dataset.desc=desc; card.dataset.cat=cat; card.dataset.stock=stock;
-    const waText=t.wa_template.replace('{name}',name).replace('{size}',size).replace('{price}',card.dataset.price);
-    const waLink='https://wa.me/34612234308?text='+encodeURIComponent(waText);
-    card.dataset.wa=waLink;
-    const ctaLink=card.querySelector('.card__cta');
-    if(ctaLink) ctaLink.href=waLink;
-  });
+  renderProducts(lang);
   // nav language trigger label + active state
   const labelEl=document.getElementById('langTriggerLabel');
   if(labelEl) labelEl.textContent=lang.toUpperCase();
@@ -1012,12 +982,6 @@ function closeModal(){
   modalOverlay.classList.remove('open');
   document.body.style.overflow='';
 }
-document.querySelectorAll('.card--shop').forEach(card=>{
-  card.addEventListener('click',(e)=>{
-    if(e.target.closest('.card__cta')) return; // let the WhatsApp link work directly
-    openModal(card);
-  });
-});
 document.getElementById('modalClose').addEventListener('click',closeModal);
 modalOverlay.addEventListener('click',(e)=>{ if(e.target===modalOverlay) closeModal(); });
 document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
