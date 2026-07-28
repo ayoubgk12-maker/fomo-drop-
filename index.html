@@ -335,7 +335,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
   <a href="#" class="nav__logo"><img src="img/logo.png" alt="FOMO DROP"></a>
   <ul class="nav__links">
     <li>
-      <button class="nav__trigger" data-i18n="nav_producto">Producto <span class="caret">▾</span></button>
+      <a href="#drop" class="nav__trigger" data-i18n="nav_producto">Producto <span class="caret">▾</span></a>
       <div class="dropdown">
         <a href="#drop"><span data-i18n="nav_producto_actual">Drop actual</span><span class="dropdown__meta" data-i18n="nav_producto_actual_meta">Lo que hay disponible ahora</span></a>
         <div id="navProductLinks"></div>
@@ -385,14 +385,7 @@ footer{background:var(--black-2);border-top:1px solid var(--line);padding:70px 5
     <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
   </div>
   <nav class="mobile-menu__links">
-    <div class="mobile-acc">
-      <button class="mobile-link"><span data-i18n="nav_producto">Producto</span> <span class="caret">▾</span></button>
-      <div class="mobile-sub">
-        <a href="#drop" data-i18n="nav_producto_actual">Drop actual</a>
-        <div id="mobileProductLinks"></div>
-        <a href="#proceso" data-i18n="nav_producto_verify_short">Autenticidad</a>
-      </div>
-    </div>
+    <a href="#drop" class="mobile-link" data-i18n="nav_producto">Producto</a>
     <div class="mobile-acc">
       <button class="mobile-link"><span data-i18n="nav_quienes">Quiénes Somos</span> <span class="caret">▾</span></button>
       <div class="mobile-sub">
