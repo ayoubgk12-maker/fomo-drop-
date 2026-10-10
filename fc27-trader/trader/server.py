@@ -513,6 +513,18 @@ class Handler(BaseHTTPRequestHandler):
         return self.app.update_settings(self._body())
 
 
+class QuietServer(ThreadingHTTPServer):
+    daemon_threads = True
+
+    def handle_error(self, request, client_address):
+        # El navegador cerró la conexión (p. ej. al cambiar de app en el móvil): no es un error.
+        import sys
+
+        if isinstance(sys.exc_info()[1], (BrokenPipeError, ConnectionResetError, ConnectionAbortedError)):
+            return
+        super().handle_error(request, client_address)
+
+
 def make_server(app: App, host: str, port: int) -> ThreadingHTTPServer:
     handler = type("BoundHandler", (Handler,), {"app": app})
-    return ThreadingHTTPServer((host, port), handler)
+    return QuietServer((host, port), handler)
