@@ -1,0 +1,27 @@
+{
+  "server": {"host": "127.0.0.1", "port": 8027},
+  "update_interval_minutes": 15,
+  "sources": {
+    "futdb": {
+      "enabled": true,
+      "token": "PEGA_AQUI_TU_TOKEN_DE_FUTDATABASE",
+      "max_requests_per_minute": 30,
+      "catalog_max_pages": 60
+    }
+  },
+  "tracking": {
+    "max_tracked_players": 150,
+    "min_rating": 84
+  },
+  "market": {
+    "tax_rate": 0.05,
+    "min_price": 150
+  },
+  "strategy": {
+    "budget": 100000,
+    "risk": "medium",
+    "time": "medium",
+    "min_profit": 300,
+    "min_margin_pct": 3.0
+  }
+}

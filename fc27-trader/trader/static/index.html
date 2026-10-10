@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FC 27 Trader</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">FC 27 <span>Trader</span></div>
+  <div id="modeBadge" class="badge"></div>
+  <div class="status" id="statusLine">Cargando…</div>
+  <div class="top-actions">
+    <select id="platformSel" title="Plataforma">
+      <option value="ps">Consola</option>
+      <option value="pc">PC</option>
+    </select>
+    <button id="refreshBtn" class="btn">Actualizar ahora</button>
+  </div>
+</header>
+<div id="demoBanner" class="banner hidden">
+  MODO DEMOSTRACIÓN: jugadores, precios y eventos son <b>sintéticos</b> y no representan el mercado real de FC 27.
+</div>
+<div class="banner info">
+  Solo análisis y simulación: esta herramienta no compra, vende ni puja, y nunca pide credenciales de EA.
+</div>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="overview" class="active">Panel</button>
+  <button data-tab="opps">Oportunidades</button>
+  <button data-tab="players">Jugadores</button>
+  <button data-tab="watch">Seguimiento</button>
+  <button data-tab="alerts">Alertas <span id="alertCount" class="count hidden"></span></button>
+  <button data-tab="trades">Operaciones</button>
+  <button data-tab="events">Eventos / SBC</button>
+  <button data-tab="sources">Fuentes y ajustes</button>
+</nav>
+
+<main>
+  <!-- PANEL -->
+  <section id="tab-overview" class="tab active">
+    <div class="grid kpis" id="kpis"></div>
+    <div class="grid two">
+      <div class="card">
+        <h3>Índice de mercado <small id="marketNote"></small></h3>
+        <div id="marketChart" class="chart"></div>
+      </div>
+      <div class="card">
+        <h3>Fuentes de datos</h3>
+        <div id="sourcesMini"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Mejores oportunidades ahora <small>según tu perfil guardado</small></h3>
+      <div id="topOpps"></div>
+    </div>
+    <div class="grid two">
+      <div class="card"><h3>Tendencias</h3><div id="trendsMini"></div></div>
+      <div class="card"><h3>Últimas alertas</h3><div id="alertsMini"></div></div>
+    </div>
+  </section>
+
+  <!-- OPORTUNIDADES -->
+  <section id="tab-opps" class="tab">
+    <div class="card filters">
+      <label>Presupuesto <input type="number" id="oBudget" min="0" step="1000"></label>
+      <label>Riesgo
+        <select id="oRisk"><option value="low">Bajo</option><option value="medium">Medio</option><option value="high">Alto</option></select>
+      </label>
+      <label>Tiempo disponible
+        <select id="oTime"><option value="short">Corto (horas)</option><option value="medium">Medio (1-2 días)</option><option value="long">Largo (semana)</option></select>
+      </label>
+      <label>Beneficio mínimo <input type="number" id="oMinProfit" min="0" step="50"></label>
+      <div class="checks" id="oStrategies"></div>
+      <button class="btn" id="oRun">Analizar</button>
+      <button class="btn ghost" id="oSave" title="Guardar como perfil por defecto">Guardar perfil</button>
+    </div>
+    <p class="hint" id="oNotes"></p>
+    <div class="card"><div id="oppsTable"></div></div>
+    <div class="card">
+      <h3>Diferencias consola / PC <small>informativo: las monedas no se transfieren entre plataformas</small></h3>
+      <div id="gapsTable"></div>
+    </div>
+  </section>
+
+  <!-- JUGADORES -->
+  <section id="tab-players" class="tab">
+    <div class="card filters">
+      <label>Buscar <input id="pQ" placeholder="Nombre"></label>
+      <label>Posición <select id="pPosition"><option value="">Todas</option></select></label>
+      <label>Liga <select id="pLeague"><option value="">Todas</option></select></label>
+      <label>Nacionalidad <select id="pNation"><option value="">Todas</option></select></label>
+      <label>Rareza <select id="pRarity"><option value="">Todas</option></select></label>
+      <label>Valoración mín. <input type="number" id="pRating" min="40" max="99"></label>
+      <label>Precio mín. <input type="number" id="pMin" min="0"></label>
+      <label>Precio máx. <input type="number" id="pMax" min="0"></label>
+      <label class="inline"><input type="checkbox" id="pPriced" checked> Solo con precio</label>
+      <button class="btn" id="pRun">Buscar</button>
+    </div>
+    <div class="card"><div id="playersTable"></div></div>
+  </section>
+
+  <!-- SEGUIMIENTO -->
+  <section id="tab-watch" class="tab">
+    <div class="card"><h3>Lista de seguimiento</h3><div id="watchTable"></div>
+      <p class="hint">Los jugadores de la lista se consultan en cada ciclo de actualización, antes que el resto.</p></div>
+  </section>
+
+  <!-- ALERTAS -->
+  <section id="tab-alerts" class="tab">
+    <div class="card">
+      <h3>Nueva alerta</h3>
+      <form id="alertForm" class="form-row">
+        <label>Tipo <select name="type" id="aType"></select></label>
+        <label>Jugador <input name="player" id="aPlayer" list="playerList" placeholder="Nombre (si aplica)"></label>
+        <label>Plataforma <select name="platform"><option value="">Ambas</option><option value="ps">Consola</option><option value="pc">PC</option></select></label>
+        <label>Umbral <input name="threshold" type="number" step="any" required></label>
+        <label>Ventana (h) <input name="window_hours" type="number" step="any" placeholder="24"></label>
+        <button class="btn">Crear</button>
+      </form>
+      <p class="hint" id="aTypeHint"></p>
+    </div>
+    <div class="grid two">
+      <div class="card"><h3>Reglas</h3><div id="rulesTable"></div></div>
+      <div class="card"><h3>Historial <button class="btn small ghost" id="ackBtn">Marcar como vistas</button>
+        <label class="inline small"><input type="checkbox" id="notifToggle"> Notificaciones del navegador</label></h3>
+        <div id="alertLog"></div></div>
+    </div>
+  </section>
+
+  <!-- OPERACIONES -->
+  <section id="tab-trades" class="tab">
+    <div class="card">
+      <h3>Registrar operación <small>registro manual de lo que hayas hecho tú en el juego</small></h3>
+      <form id="tradeForm" class="form-row">
+        <label>Jugador <input name="player" list="playerList" required></label>
+        <label>Plataforma <select name="platform"><option value="ps">Consola</option><option value="pc">PC</option></select></label>
+        <label>Cantidad <input name="quantity" type="number" min="1" value="1"></label>
+        <label>Compra <input name="buy_price" type="number" min="1" required></label>
+        <label>Venta <input name="sell_price" type="number" min="1" placeholder="si ya vendiste"></label>
+        <label>Estrategia <input name="strategy" placeholder="flip, dip…"></label>
+        <button class="btn">Guardar</button>
+      </form>
+    </div>
+    <div class="grid kpis" id="tradeKpis"></div>
+    <div class="card"><div id="tradesTable"></div></div>
+  </section>
+
+  <!-- EVENTOS -->
+  <section id="tab-events" class="tab">
+    <div class="card">
+      <h3>Eventos, SBC y promociones <small>no hay ninguna fuente autorizada con este calendario: lo introduces tú</small></h3>
+      <form id="eventForm" class="form-row">
+        <label>Nombre <input name="name" required></label>
+        <label>Tipo <select name="kind"><option value="sbc">SBC</option><option value="promo">Promo</option><option value="recompensas">Recompensas</option><option value="otro">Otro</option></select></label>
+        <label>Empieza <input name="starts_at" type="datetime-local" required></label>
+        <label>Valoración mín. <input name="rating_min" type="number" min="40" max="99"></label>
+        <label>Valoración máx. <input name="rating_max" type="number" min="40" max="99"></label>
+        <label>Jugadores <input name="players" placeholder="nombres separados por ;"></label>
+        <button class="btn">Añadir</button>
+      </form>
+      <p class="hint">La estrategia "previa a SBC/evento" sugiere jugadores que encajan con eventos futuros de esta lista.</p>
+    </div>
+    <div class="card"><div id="eventsTable"></div></div>
+  </section>
+
+  <!-- FUENTES -->
+  <section id="tab-sources" class="tab">
+    <div class="card"><h3>Fuentes de precios</h3><div id="sourcesTable"></div></div>
+    <div class="grid two">
+      <div class="card">
+        <h3>Calculadora de beneficio</h3>
+        <form id="calcForm" class="form-row">
+          <label>Compra <input name="buy" type="number" min="1" required></label>
+          <label>Venta <input name="sell" type="number" min="1" required></label>
+          <label>Cantidad <input name="quantity" type="number" min="1" value="1"></label>
+          <button class="btn">Calcular</button>
+        </form>
+        <div id="calcOut"></div>
+      </div>
+      <div class="card">
+        <h3>Ajustes</h3>
+        <form id="settingsForm" class="form-row">
+          <label>Intervalo (min) <input name="update_interval_minutes" type="number" min="1"></label>
+          <label>Jugadores seguidos máx. <input name="max_tracked_players" type="number" min="1"></label>
+          <label>Valoración mínima seguida <input name="min_rating" type="number" min="0" max="99"></label>
+          <label>Ventana de análisis (h) <input name="window_hours" type="number" min="6"></label>
+          <label>Precio "reciente" hasta (min) <input name="stale_after_minutes" type="number" min="1"></label>
+          <button class="btn">Guardar</button>
+        </form>
+      </div>
+    </div>
+    <div class="grid two">
+      <div class="card">
+        <h3>Añadir precio observado</h3>
+        <form id="manualForm" class="form-row">
+          <label>Jugador <input name="player" list="playerList" required></label>
+          <label>Plataforma <select name="platform"><option value="ps">Consola</option><option value="pc">PC</option></select></label>
+          <label>Precio <input name="price" type="number" min="1" required></label>
+          <label>Dónde lo viste <input name="source" placeholder="mercado del juego, web…"></label>
+          <button class="btn">Guardar</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Importar CSV</h3>
+        <p class="hint">Columnas: <code>name</code> o <code>player_id</code>, <code>platform</code>, <code>price</code>; opcionales <code>observed_at</code> (ISO 8601), <code>min_price</code>, <code>max_price</code>, <code>source</code>, <code>rating</code>, <code>position</code>.</p>
+        <input type="file" id="csvFile" accept=".csv,text/csv">
+        <div id="csvOut"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="drawer" class="drawer hidden">
+  <div class="drawer-inner">
+    <button class="close" id="drawerClose" aria-label="Cerrar">×</button>
+    <div id="drawerBody"></div>
+  </div>
+</div>
+<datalist id="playerList"></datalist>
+<div id="toast" class="toast hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>

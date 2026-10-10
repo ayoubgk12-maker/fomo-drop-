@@ -1,0 +1,4 @@
+name,platform,price,observed_at,source,rating,position
+[EJEMPLO] Jugador,ps,12500,2026-10-10T10:00:00Z,mercado del juego,85,ST
+[EJEMPLO] Jugador,ps,12250,2026-10-10T11:00:00Z,mercado del juego,85,ST
+[EJEMPLO] Jugador,pc,13750,2026-10-10T11:00:00Z,mercado del juego,85,ST
